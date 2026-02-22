@@ -1,39 +1,39 @@
-# Multi-Agent Content Factory
+# 多智能体内容工厂
 
-You're a content creator juggling research, writing, and design across multiple platforms. Each step — finding trending topics, writing scripts, generating thumbnails — eats hours of your day. What if a team of specialized agents handled all of it overnight?
+你是内容创作者，在多个平台上同时处理研究、写作和设计。每一步 —— 寻找热门话题、编写脚本、生成缩略图 —— 都要消耗数小时。如果有一个专业智能体团队在一夜之间处理所有这些呢？
 
-This workflow sets up a multi-agent content factory inside Discord, where different agents handle research, writing, and visual assets in dedicated channels.
+这个工作流程在 Discord 中设置了一个多智能体内容工厂，不同的智能体在专门的频道中处理研究、写作和视觉素材。
 
-## What It Does
+## 功能说明
 
-- **Research Agent** scans trending stories, competitor content, and social media for the best content opportunities each morning
-- **Writing Agent** takes the top ideas and writes full scripts, threads, or newsletter drafts
-- **Thumbnail Agent** generates AI thumbnails or cover images for the content
-- Each agent works in its own Discord channel, keeping everything organized and reviewable
-- Runs automatically on a schedule (e.g., daily at 8 AM) so you wake up to finished content
+- **研究智能体** 每天早上扫描热门故事、竞争对手内容和社交媒体，寻找最佳内容机会
+- **写作智能体** 获取最佳创意并编写完整的脚本、推文线程或通讯草稿
+- **缩略图智能体** 为内容生成 AI 缩略图或封面图片
+- 每个智能体在自己的 Discord 频道中工作，保持一切有条理且可审查
+- 按计划自动运行（例如，每天早上 8 点），让你醒来就有完成的内容
 
-## Pain Point
+## 痛点
 
-Content creation has three phases — research, writing, and design — and most creators are doing all three manually. Even with AI writing tools, you still have to prompt them one at a time. This system chains agents together in a pipeline where one agent's output feeds the next, completely hands-free.
+内容创作有三个阶段 —— 研究、写作和设计 —— 大多数创作者手动完成这三个阶段。即使有 AI 写作工具，你仍然需要一个一个地提示它们。这个系统将智能体链接成一个流水线，一个智能体的输出馈送给下一个，完全免提。
 
-## Skills You Need
+## 所需技能
 
-- Discord integration with multiple channels
-- `sessions_spawn` / `sessions_send` for multi-agent orchestration
-- [x-research-v2](https://clawhub.ai) or similar for social media research
-- Local image generation (e.g., Nano Banana) or an image generation API
-- [knowledge-base](https://clawhub.ai) skill (optional, for RAG-powered research)
+- Discord 集成与多个频道
+- `sessions_spawn` / `sessions_send` 用于多智能体编排
+- [x-research-v2](https://clawhub.ai) 或类似技能用于社交媒体研究
+- 本地图像生成（如 Nano Banana）或图像生成 API
+- [knowledge-base](https://clawhub.ai) 技能（可选，用于 RAG 驱动的研究）
 
-## How to Set It Up
+## 如何设置
 
-1. Set up a Discord server (or ask OpenClaw to do it for you — just say "Set up a Discord for us").
+1. 设置 Discord 服务器（或让 OpenClaw 为你做 —— 只需说"为我们设置一个 Discord"）。
 
-2. Create channels for each agent:
-   - `#research` — trending topics and content opportunities
-   - `#scripts` — written drafts and outlines
-   - `#thumbnails` — generated images and cover art
+2. 为每个智能体创建频道：
+   - `#research` — 热门话题和内容机会
+   - `#scripts` — 书面草稿和大纲
+   - `#thumbnails` — 生成的图片和封面艺术
 
-3. Prompt OpenClaw:
+3. 向 OpenClaw 发送提示：
 ```text
 I want you to build me a content factory inside of Discord.
 Set up channels for different agents:
@@ -52,24 +52,24 @@ Have all their work organized in different channels.
 Run this pipeline automatically every morning.
 ```
 
-4. Customize for your platform:
+4. 为你的平台定制：
 ```text
 I focus on X/Twitter threads, not YouTube. Change the writing agent
 to produce tweet threads instead of video scripts.
 ```
 
-## Key Insights
+## 关键要点
 
-- The power is in the **chained agents** — research feeds writing, writing feeds thumbnails. You don't prompt each step individually.
-- Discord channels make it easy to review each agent's work separately and give feedback like "scripts are too long" or "focus more on AI news."
-- You can adapt this for any content format: tweets, newsletters, LinkedIn posts, podcast outlines, blog articles.
-- Running a local model for image generation (like Nano Banana on a Mac Studio) keeps costs down and gives you more control.
+- 力量在于**链式智能体** —— 研究喂养写作，写作喂养缩略图。你不需要逐个提示每一步。
+- Discord 频道让你可以轻松分别审查每个智能体的工作并给出反馈，如"脚本太长"或"更多关注 AI 新闻"。
+- 你可以将其适配于任何内容格式：推文、通讯、LinkedIn 帖子、播客大纲、博客文章。
+- 运行本地模型进行图像生成（如 Mac Studio 上的 Nano Banana）可以降低成本并给你更多控制。
 
-## Based On
+## 参考来源
 
-Inspired by [Alex Finn's video on life-changing OpenClaw use cases](https://www.youtube.com/watch?v=41_TNGDDnfQ).
+灵感来自 [Alex Finn 关于改变生活的 OpenClaw 使用案例的视频](https://www.youtube.com/watch?v=41_TNGDDnfQ)。
 
-## Related Links
+## 相关链接
 
-- [OpenClaw Subagent Docs](https://github.com/openclaw/openclaw)
-- [Discord Bot Setup](https://discord.com/developers/docs)
+- [OpenClaw 子智能体文档](https://github.com/openclaw/openclaw)
+- [Discord Bot 设置](https://discord.com/developers/docs)

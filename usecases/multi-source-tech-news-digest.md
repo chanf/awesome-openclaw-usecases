@@ -1,32 +1,32 @@
-# Multi-Source Tech News Digest
+# 多源科技新闻摘要
 
-Automatically aggregate, score, and deliver tech news from 109+ sources across RSS, Twitter/X, GitHub releases, and web search — all managed through natural language.
+自动聚合、评分和分发来自 109+ 个来源（包括 RSS、Twitter/X、GitHub 发布和网页搜索）的科技新闻 —— 全部通过自然语言管理。
 
-## Pain Point
+## 痛点
 
-Staying updated across AI, open-source, and frontier tech requires checking dozens of RSS feeds, Twitter accounts, GitHub repos, and news sites daily. Manual curation is time-consuming, and most existing tools either lack quality filtering or require complex configuration.
+要了解 AI、开源和前沿科技的最新动态，需要每天查看数十个 RSS 订阅、Twitter 账户、GitHub 仓库和新闻网站。手动筛选耗时，而且大多数现有工具要么缺乏质量过滤，要么需要复杂配置。
 
-## What It Does
+## 功能说明
 
-A four-layer data pipeline that runs on a schedule:
+一个按计划运行的四层数据管道：
 
-1. **RSS Feeds** (46 sources) — OpenAI, Hacker News, MIT Tech Review, etc.
-2. **Twitter/X KOLs** (44 accounts) — @karpathy, @sama, @VitalikButerin, etc.
-3. **GitHub Releases** (19 repos) — vLLM, LangChain, Ollama, Dify, etc.
-4. **Web Search** (4 topic searches) — via Brave Search API
+1. **RSS 订阅**（46 个来源）—— OpenAI、Hacker News、MIT Tech Review 等
+2. **Twitter/X KOL**（44 个账户）—— @karpathy、@sama、@VitalikButerin 等
+3. **GitHub 发布**（19 个仓库）—— vLLM、LangChain、Ollama、Dify 等
+4. **网页搜索**（4 个主题搜索）—— 通过 Brave Search API
 
-All articles are merged, deduplicated by title similarity, and quality-scored (priority source +3, multi-source +5, recency +2, engagement +1). The final digest is delivered to Discord, email, or Telegram.
+所有文章被合并、按标题相似度去重，并进行质量评分（优先来源 +3，多来源 +5，时效性 +2，互动量 +1）。最终摘要发送到 Discord、电子邮件或 Telegram。
 
-The framework is fully customizable — add your own RSS feeds, Twitter handles, GitHub repos, or search queries in 30 seconds.
+该框架完全可定制 —— 在 30 秒内添加你自己的 RSS 订阅、Twitter 账号、GitHub 仓库或搜索查询。
 
-## Prompts
+## 提示词
 
-**Install and set up daily digest:**
+**安装并设置每日摘要：**
 ```text
 Install tech-news-digest from ClawHub. Set up a daily tech digest at 9am to Discord #tech-news channel. Also send it to my email at myemail@example.com.
 ```
 
-**Add custom sources:**
+**添加自定义来源：**
 ```text
 Add these to my tech digest sources:
 - RSS: https://my-company-blog.com/feed
@@ -34,23 +34,23 @@ Add these to my tech digest sources:
 - GitHub: my-org/my-framework
 ```
 
-**Generate on demand:**
+**按需生成：**
 ```text
 Generate a tech digest for the past 24 hours and send it here.
 ```
 
-## Skills Needed
+## 所需技能
 
-- [tech-news-digest](https://clawhub.ai/skills/tech-news-digest) — Install via `clawhub install tech-news-digest`
-- [gog](https://clawhub.ai/skills/gog) (optional) — For email delivery via Gmail
+- [tech-news-digest](https://clawhub.ai/skills/tech-news-digest) — 通过 `clawhub install tech-news-digest` 安装
+- [gog](https://clawhub.ai/skills/gog)（可选）— 用于通过 Gmail 发送邮件
 
-## Environment Variables (Optional)
+## 环境变量（可选）
 
-- `X_BEARER_TOKEN` — Twitter/X API bearer token for KOL monitoring
-- `BRAVE_API_KEY` — Brave Search API key for web search layer
-- `GITHUB_TOKEN` — GitHub token for higher API rate limits
+- `X_BEARER_TOKEN` — Twitter/X API bearer token，用于 KOL 监控
+- `BRAVE_API_KEY` — Brave Search API key，用于网页搜索层
+- `GITHUB_TOKEN` — GitHub token，用于更高的 API 速率限制
 
-## Related Links
+## 相关链接
 
-- [GitHub Repository](https://github.com/draco-agent/tech-news-digest)
-- [ClawHub Page](https://clawhub.ai/skills/tech-news-digest)
+- [GitHub 仓库](https://github.com/draco-agent/tech-news-digest)
+- [ClawHub 页面](https://clawhub.ai/skills/tech-news-digest)

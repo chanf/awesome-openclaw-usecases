@@ -1,26 +1,26 @@
-# Autonomous Project Management with Subagents
+# 使用子智能体的自主项目管理
 
-Managing complex projects with multiple parallel workstreams is exhausting. You end up context-switching constantly, tracking status across tools, and manually coordinating handoffs.
+管理具有多个并行工作流的复杂项目令人筋疲力尽。你不断地切换上下文、跨工具追踪状态并手动协调交接。
 
-This use case implements a decentralized project management pattern where subagents work autonomously on tasks, coordinating through shared state files rather than a central orchestrator.
+这个使用案例实现了一种去中心化的项目管理模式，子智能体自主处理任务，通过共享状态文件而非中央编排器进行协调。
 
-## Pain Point
+## 痛点
 
-Traditional orchestrator patterns create bottlenecks—the main agent becomes a traffic cop. For complex projects (multi-repo refactors, research sprints, content pipelines), you need agents that can work in parallel without constant supervision.
+传统编排器模式造成瓶颈 —— 主智能体变成交通指挥。对于复杂项目（多仓库重构、研究冲刺、内容流水线），你需要能够无需持续监督并行工作的智能体。
 
-## What It Does
+## 功能说明
 
-- **Decentralized coordination**: Agents read/write to a shared `STATE.yaml` file
-- **Parallel execution**: Multiple subagents work on independent tasks simultaneously
-- **No orchestrator overhead**: Main session stays thin (CEO pattern—strategy only)
-- **Self-documenting**: All task state persists in version-controlled files
+- **去中心化协调**：智能体读/写共享的 `STATE.yaml` 文件
+- **并行执行**：多个子智能体同时处理独立任务
+- **无编排器开销**：主会话保持轻量（CEO 模式 —— 仅战略）
+- **自文档化**：所有任务状态持久化在版本控制的文件中
 
-## Core Pattern: STATE.yaml
+## 核心模式：STATE.yaml
 
-Each project maintains a `STATE.yaml` file that serves as the single source of truth:
+每个项目维护一个作为单一事实来源的 `STATE.yaml` 文件：
 
 ```yaml
-# STATE.yaml - Project coordination file
+# STATE.yaml - 项目协调文件
 project: website-redesign
 updated: 2026-02-10T14:30:00Z
 
@@ -48,21 +48,21 @@ next_actions:
   - "pm-frontend: Review hero with design team"
 ```
 
-## How It Works
+## 工作原理
 
-1. **Main agent receives task** → spawns subagent with specific scope
-2. **Subagent reads STATE.yaml** → finds its assigned tasks
-3. **Subagent works autonomously** → updates STATE.yaml on progress
-4. **Other agents poll STATE.yaml** → pick up unblocked work
-5. **Main agent checks in periodically** → reviews state, adjusts priorities
+1. **主智能体接收任务** → 生成具有特定范围的子智能体
+2. **子智能体读取 STATE.yaml** → 找到其分配的任务
+3. **子智能体自主工作** → 更新 STATE.yaml 的进度
+4. **其他智能体轮询 STATE.yaml** → 获取已解除阻塞的工作
+5. **主智能体定期检查** → 审查状态、调整优先级
 
-## Skills You Need
+## 所需技能
 
-- `sessions_spawn` / `sessions_send` for subagent management
-- File system access for STATE.yaml
-- Git for state versioning (optional but recommended)
+- `sessions_spawn` / `sessions_send` 用于子智能体管理
+- STATE.yaml 的文件系统访问
+- Git 用于状态版本控制（可选但推荐）
 
-## Setup: AGENTS.md Configuration
+## 设置：AGENTS.md 配置
 
 ```text
 ## PM Delegation Pattern
@@ -84,7 +84,7 @@ Rules:
 - All state changes committed to git
 ```
 
-## Example: Spawning a PM
+## 示例：生成 PM
 
 ```text
 User: "Refactor the auth module and update the docs"
@@ -104,18 +104,18 @@ PM subagent:
 4. Reports completion to main
 ```
 
-## Key Insights
+## 关键要点
 
-- **STATE.yaml > orchestrator**: File-based coordination scales better than message-passing
-- **Git as audit log**: Commit STATE.yaml changes for full history
-- **Label conventions matter**: Use `pm-{project}-{scope}` for easy tracking
-- **Thin main session**: The less the main agent does, the faster it responds
+- **STATE.yaml > 编排器**：基于文件的协调比消息传递更好地扩展
+- **Git 作为审计日志**：提交 STATE.yaml 更改以获得完整历史
+- **标签约定很重要**：使用 `pm-{project}-{scope}` 以便轻松追踪
+- **轻量主会话**：主智能体做得越少，响应越快
 
-## Based On
+## 参考来源
 
-This pattern is inspired by [Nicholas Carlini's approach](https://nicholas.carlini.com/) to autonomous coding agents—let agents self-organize rather than micromanaging them.
+这个模式的灵感来自 [Nicholas Carlini 的方法](https://nicholas.carlini.com/) —— 让智能体自组织而不是微观管理它们。
 
-## Related Links
+## 相关链接
 
-- [OpenClaw Subagent Docs](https://github.com/openclaw/openclaw)
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+- [OpenClaw 子智能体文档](https://github.com/openclaw/openclaw)
+- [Anthropic: 构建有效的智能体](https://www.anthropic.com/research/building-effective-agents)

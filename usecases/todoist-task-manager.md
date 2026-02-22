@@ -1,31 +1,37 @@
-# Todoist Task Manager: Agent Task Visibility
-Maximize transparency for long-running agentic workflows by syncing internal reasoning and progress logs directly to Todoist.
+# Todoist 任务管理器：智能体任务可见性
 
-## Pain Point
-When agents run complex, multi-step tasks (like building a full-stack app or performing deep research), the user often loses track of what the agent is currently doing, what steps have been completed, and where the agent might be stuck. Checking chat logs manually is tedious for background tasks.
+通过将内部推理和进度日志直接同步到 Todoist，最大化长时间运行的智能体工作流的透明度。
 
-## What It Does
-This use case uses the `todoist-task-manager` skill to:
-1.  **Visualize State**: Create tasks in specific sections like `🟡 In Progress` or `🟠 Waiting`.
-2.  **Externalize Reasoning**: Post the agent's internal "Plan" into the task description.
-3.  **Stream Logs**: Add sub-step completions as comments to the task in real-time.
-4.  **Auto-Reconcile**: A heartbeat script checks for stalled tasks and notifies the user.
+## 痛点
 
-## Skills you Need
-You don't need a pre-built skill. Simply prompt your OpenClaw agent to create the bash scripts described in the **Setup Guide** below. Since OpenClaw can manage its own filesystem and execute shell commands, it will effectively "build" the skill for you upon request.
+当智能体运行复杂的多步骤任务（如构建全栈应用或进行深度研究）时，用户经常失去对智能体当前正在做什么、哪些步骤已完成以及智能体可能卡在哪里的追踪。手动检查聊天日志对于后台任务来说很繁琐。
 
-## Detailed Setup Guide
+## 功能说明
 
-### 1. Configure Todoist
-Create a project (e.g., "OpenClaw Workspace") and get its ID. Create sections for different states:
+这个使用案例使用 `todoist-task-manager` 技能：
+1. **可视化状态**：在特定部分创建任务，如 `🟡 In Progress` 或 `🟠 Waiting`。
+2. **外化推理**：将智能体的内部"计划"发布到任务描述中。
+3. **流式日志**：实时将子步骤完成作为评论添加到任务中。
+4. **自动协调**：心跳脚本检查停滞的任务并通知用户。
+
+## 所需技能
+
+你不需要预构建的技能。只需提示你的 OpenClaw 智能体创建下面**设置指南**中描述的 bash 脚本。由于 OpenClaw 可以管理自己的文件系统并执行 shell 命令，它会根据请求有效地为你"构建"技能。
+
+## 详细设置指南
+
+### 1. 配置 Todoist
+
+创建一个项目（例如 "OpenClaw Workspace"）并获取其 ID。为不同状态创建部分：
 - `🟡 In Progress`
 - `🟠 Waiting`
 - `🟢 Done`
 
-### 2. Implementation: The "Agent-Built" Skill
-Instead of installing a skill, you can ask OpenClaw to create these scripts for you. Each script handles a different part of the communication with the Todoist API.
+### 2. 实现："智能体构建"的技能
 
-**`scripts/todoist_api.sh`** (The Core Wrapper):
+你不需要安装技能，可以让 OpenClaw 为你创建这些脚本。每个脚本处理与 Todoist API 通信的不同部分。
+
+**`scripts/todoist_api.sh`**（核心包装器）：
 ```bash
 #!/bin/bash
 # Usage: ./todoist_api.sh <endpoint> <method> [data_json]
@@ -45,7 +51,7 @@ else
 fi
 ```
 
-**`scripts/sync_task.sh`** (Task & Status Management):
+**`scripts/sync_task.sh`**（任务和状态管理）：
 ```bash
 #!/bin/bash
 # Usage: ./sync_task.sh <task_content> <status> [task_id] [description] [labels_json_array]
@@ -80,7 +86,7 @@ else
 fi
 ```
 
-**`scripts/add_comment.sh`** (Progress Logging):
+**`scripts/add_comment.sh`**（进度日志）：
 ```bash
 #!/bin/bash
 # Usage: ./add_comment.sh <task_id> <comment_text>
@@ -91,8 +97,9 @@ PAYLOAD="{\"task_id\": \"$TASK_ID\", \"content\": \"$ESC_TEXT\"}"
 ./scripts/todoist_api.sh "comments" POST "$PAYLOAD"
 ```
 
-### 3. Usage Prompt
-You can give this prompt to your agent to both **setup** and **use** the visibility system:
+### 3. 使用提示
+
+你可以给智能体这个提示来**设置**和**使用**可见性系统：
 
 ```text
 I want you to build a Todoist-based task visibility system for your own runs. 
@@ -113,6 +120,6 @@ Once created, for every complex task I give you:
 3. Move the task to 'Done' when finished.
 ```
 
-## Related Links
-- [Todoist REST API Documentation](https://developer.todoist.com/rest/v2/)
+## 相关链接
 
+- [Todoist REST API 文档](https://developer.todoist.com/rest/v2/)

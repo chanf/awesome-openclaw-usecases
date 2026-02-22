@@ -1,28 +1,28 @@
-# Multi-Agent Specialized Team (Solo Founder Setup)
+# 多智能体专业团队（独立创始人设置）
 
-Solo founders wear every hat — strategy, development, marketing, sales, operations. Context-switching between these roles destroys deep work. Hiring is expensive and slow. What if you could spin up a small, specialized team of AI agents, each with a distinct role and personality, all controllable from a single chat interface?
+独立创始人身兼数职 —— 战略、开发、营销、销售、运营。在这些角色之间切换会破坏深度工作。雇佣成本高且慢。如果你可以组建一个小型的、专业化的 AI 智能体团队，每个都有独特的角色和个性，全部可通过单个聊天界面控制呢？
 
-This use case sets up multiple OpenClaw agents as a coordinated team, each specialized in a domain, communicating through shared memory and controlled via Telegram.
+这个使用案例将多个 OpenClaw 智能体设置为一个协调团队，每个专注于一个领域，通过共享记忆通信并通过 Telegram 控制。
 
-## Pain Point
+## 痛点
 
-- **One agent can't do everything well**: A single agent's context window fills up fast when juggling strategy, code, marketing research, and business analysis
-- **No specialization**: Generic prompts produce generic outputs — a coding agent shouldn't also be crafting marketing copy
-- **Solo founder burnout**: You need a team, not another tool to manage. The agents should work in the background and surface results, not require constant babysitting
-- **Knowledge silos**: Insights from marketing research don't automatically inform dev priorities unless you manually bridge them
+- **一个智能体无法做好所有事情**：当同时处理战略、代码、营销研究和业务分析时，单个智能体的上下文窗口很快填满
+- **没有专业化**：通用提示产生通用输出 —— 编码智能体不应该同时也编写营销文案
+- **独立创始人倦怠**：你需要一个团队，而不是另一个需要管理的工具。智能体应该在后台工作并呈现结果，不需要持续监督
+- **知识孤岛**：营销研究的洞察不会自动通知开发优先级，除非你手动桥接它们
 
-## What It Does
+## 功能说明
 
-- **Specialized agents**: Each agent has a distinct role, personality, and model optimized for its domain
-- **Shared memory**: Project docs, goals, and key decisions are accessible to all agents — nothing gets lost
-- **Private context**: Each agent also maintains its own conversation history and domain-specific notes
-- **Single control plane**: All agents are accessible through one Telegram group chat — tag the agent you need
-- **Scheduled daily tasks**: Agents proactively work without being asked — content prompts, competitor monitoring, metric tracking
-- **Parallel execution**: Multiple agents can work on independent tasks simultaneously
+- **专业化智能体**：每个智能体有独特的角色、个性和针对其领域优化的模型
+- **共享记忆**：项目文档、目标和关键决策对所有智能体可访问 —— 不会丢失任何东西
+- **私有上下文**：每个智能体还维护自己的对话历史和领域特定笔记
+- **单一控制平面**：所有智能体通过一个 Telegram 群聊可访问 —— 标记你需要的智能体
+- **计划每日任务**：智能体主动工作而不需要被询问 —— 内容提示、竞争对手监控、指标追踪
+- **并行执行**：多个智能体可以同时处理独立任务
 
-## Example Team Configuration
+## 示例团队配置
 
-### Agent 1: Milo (Strategy Lead)
+### 智能体 1：Milo（战略负责人）
 
 ```text
 ## SOUL.md — Milo
@@ -43,7 +43,7 @@ Daily tasks:
 - 6:00 PM: End-of-day recap with progress toward weekly goals
 ```
 
-### Agent 2: Josh (Business & Growth)
+### 智能体 2：Josh（业务与增长）
 
 ```text
 ## SOUL.md — Josh
@@ -64,7 +64,7 @@ Daily tasks:
 - Track competitor pricing changes weekly
 ```
 
-### Agent 3: Marketing Agent
+### 智能体 3：营销智能体
 
 ```text
 ## SOUL.md — Marketing Agent
@@ -86,7 +86,7 @@ Daily tasks:
 - Weekly content calendar draft
 ```
 
-### Agent 4: Dev Agent
+### 智能体 4：开发智能体
 
 ```text
 ## SOUL.md — Dev Agent
@@ -108,33 +108,33 @@ Daily tasks:
 - Flag technical debt items
 ```
 
-## Skills You Need
+## 所需技能
 
-- `telegram` skill for the shared control interface
-- `sessions_spawn` / `sessions_send` for multi-agent coordination
-- Shared file system or note-taking tool for team memory
-- Individual API keys for different model providers (if using mixed models)
-- A VPS or always-on machine to run the agents
+- `telegram` 技能用于共享控制接口
+- `sessions_spawn` / `sessions_send` 用于多智能体协调
+- 共享文件系统或笔记工具用于团队记忆
+- 不同模型提供商的单独 API 密钥（如果使用混合模型）
+- VPS 或全天候运行的机器来运行智能体
 
-## How to Set It Up
+## 如何设置
 
-### 1. Shared Memory Structure
+### 1. 共享记忆结构
 
 ```text
 team/
-├── GOALS.md           # Current OKRs and priorities (all agents read)
-├── DECISIONS.md       # Key decisions log (append-only)
-├── PROJECT_STATUS.md  # Current project state (updated by all)
+├── GOALS.md           # 当前 OKR 和优先级（所有智能体读取）
+├── DECISIONS.md       # 关键决策日志（仅追加）
+├── PROJECT_STATUS.md  # 当前项目状态（由所有人更新）
 ├── agents/
-│   ├── milo/          # Milo's private context and notes
-│   ├── josh/          # Josh's private context
-│   ├── marketing/     # Marketing agent's research
-│   └── dev/           # Dev agent's technical notes
+│   ├── milo/          # Milo 的私有上下文和笔记
+│   ├── josh/          # Josh 的私有上下文
+│   ├── marketing/     # 营销智能体的研究
+│   └── dev/           # 开发智能体的技术笔记
 ```
 
-### 2. Telegram Routing
+### 2. Telegram 路由
 
-Configure a single Telegram group where all agents listen, but each responds only when tagged:
+配置一个所有智能体监听的单一 Telegram 群组，但每个只在被标记时响应：
 
 ```text
 ## AGENTS.md — Telegram Routing
@@ -157,7 +157,7 @@ Each agent:
 5. Updates shared files if the response involves a decision or status change
 ```
 
-### 3. Scheduled Tasks
+### 3. 计划任务
 
 ```text
 ## HEARTBEAT.md — Team Schedule
@@ -178,23 +178,23 @@ Weekly:
 - Friday: Josh compiles weekly metrics report
 ```
 
-## Key Insights
+## 关键要点
 
-- **Personality matters more than you'd think**: Giving agents distinct names and communication styles makes it natural to "talk to your team" rather than wrestle with a generic AI
-- **Shared memory + private context**: The combination is critical — agents need common ground (goals, decisions) but also their own space to accumulate domain expertise
-- **Right model for the right job**: Don't use an expensive reasoning model for keyword monitoring. Match model capability to task complexity
-- **Scheduled tasks are the flywheel**: The real value emerges when agents proactively surface insights, not just when you ask
-- **Start with 2, not 4**: Begin with a lead + one specialist, then add agents as you identify bottlenecks
+- **个性比你想象的更重要**：给智能体不同的名字和沟通风格使"与你的团队交谈"变得自然，而不是与通用 AI 斗争
+- **共享记忆 + 私有上下文**：组合至关重要 —— 智能体需要共同基础（目标、决策）但也需要自己的空间来积累领域专业知识
+- **合适的模型做合适的工作**：不要使用昂贵的推理模型进行关键词监控。将模型能力与任务复杂性匹配
+- **计划任务是飞轮**：真正的价值在智能体主动呈现洞察时出现，而不只是在你询问时
+- **从 2 个开始，不是 4 个**：从负责人 + 一个专家开始，然后随着你识别瓶颈添加智能体
 
-## Inspired By
+## 参考来源
 
-This pattern was described by [Trebuh on X](https://x.com/iamtrebuh/status/2011260468975771862), a solo founder who set up 4 OpenClaw agents — Milo (strategy lead), Josh (business), a marketing agent, and a dev agent — all controlled through a single Telegram chat on a VPS. Each agent has its own personality, model, and scheduled tasks, while sharing project memory. He described it as "a real small team available 24/7."
+这个模式由 [Trebuh on X](https://x.com/iamtrebuh/status/2011260468975771862) 描述，他是一位独立创始人，设置了 4 个 OpenClaw 智能体 —— Milo（战略负责人）、Josh（业务）、营销智能体和开发智能体 —— 全部通过 VPS 上的单个 Telegram 聊天控制。每个智能体有自己的个性、模型和计划任务，同时共享项目记忆。他将其描述为"一个真正的小团队 24/7 可用。"
 
-The pattern was also confirmed on the [OpenClaw Showcase](https://openclaw.ai/showcase), where `@jdrhyne` reported running "15+ agents, 3 machines, 1 Discord server — IT built most of this, just by chatting," and `@nateliason` described a multi-model pipeline (prototype → summarize → optimize → implement → repeat) using different models at each stage. Another user, `@danpeguine`, runs two different OpenClaw instances collaborating in the same WhatsApp group.
+该模式也在 [OpenClaw Showcase](https://openclaw.ai/showcase) 上确认，其中 `@jdrhyne` 报告运行"15+ 智能体，3 台机器，1 个 Discord 服务器 —— IT 构建了大部分，只是通过聊天"，`@nateliason` 描述了多模型流水线（原型 → 总结 → 优化 → 实现 → 重复），在每个阶段使用不同的模型。另一位用户 `@danpeguine` 在同一个 WhatsApp 群组中运行两个不同的 OpenClaw 实例协作。
 
-## Related Links
+## 相关链接
 
-- [OpenClaw Subagent Documentation](https://github.com/openclaw/openclaw)
-- [OpenClaw Telegram Skill](https://github.com/openclaw/openclaw)
+- [OpenClaw 子智能体文档](https://github.com/openclaw/openclaw)
+- [OpenClaw Telegram 技能](https://github.com/openclaw/openclaw)
 - [OpenClaw Showcase](https://openclaw.ai/showcase)
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+- [Anthropic: 构建有效的智能体](https://www.anthropic.com/research/building-effective-agents)

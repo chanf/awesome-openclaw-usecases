@@ -1,38 +1,38 @@
-# Second Brain
+# 第二大脑
 
-You come up with ideas, find interesting links, hear about books to read — but you never have a good system for capturing them. Notion gets complex, Apple Notes becomes a graveyard of 10,000 unread entries. You need something as simple as texting a friend.
+你有创意、发现有趣的链接、听说要读的书 —— 但你从来没有一个好的系统来捕获它们。Notion 变得复杂，Apple Notes 变成 10,000 条未读条目的坟墓。你需要像给朋友发短信一样简单的东西。
 
-This workflow turns OpenClaw into a memory-capture system you interact with via text message, backed by a custom searchable UI you can browse anytime.
+这个工作流程将 OpenClaw 变成一个通过短信交互的记忆捕获系统，由你可以随时浏览的自定义可搜索 UI 支持。
 
-## What It Does
+## 功能说明
 
-- Text anything to your OpenClaw via Telegram, iMessage, or Discord — "Remind me to read a book about local LLMs" — and it remembers it instantly
-- OpenClaw's built-in memory system stores everything you tell it permanently
-- A custom Next.js dashboard lets you search through every memory, conversation, and note
-- Global search (Cmd+K) across all memories, documents, and tasks
-- No folders, no tags, no complex organization — just text and search
+- 通过 Telegram、iMessage 或 Discord 向你的 OpenClaw 发送任何内容 —— "提醒我读一本关于本地 LLM 的书" —— 它会立即记住
+- OpenClaw 的内置记忆系统永久存储你告诉它的所有内容
+- 自定义 Next.js 仪表板让你搜索每条记忆、对话和笔记
+- 全局搜索（Cmd+K）跨所有记忆、文档和任务
+- 没有文件夹、没有标签、没有复杂的组织 —— 只有文本和搜索
 
-## Pain Point
+## 痛点
 
-Every note-taking app eventually becomes a chore. You stop using it because the friction of organizing is higher than the friction of forgetting. The key insight is: **capture should be as easy as texting, and retrieval should be as easy as searching**.
+每个笔记应用最终都变成一件苦差事。你停止使用它，因为组织的摩擦高于遗忘的摩擦。关键洞察是：**捕获应该像发短信一样简单，检索应该像搜索一样简单**。
 
-## Skills You Need
+## 所需技能
 
-- Telegram, iMessage, or Discord integration (for text-based capture)
-- Next.js (OpenClaw builds this for you — no coding needed)
+- Telegram、iMessage 或 Discord 集成（用于基于文本的捕获）
+- Next.js（OpenClaw 为你构建 —— 不需要编码）
 
-## How to Set It Up
+## 如何设置
 
-1. Make sure your OpenClaw is connected to your preferred messaging platform (Telegram, Discord, etc.).
+1. 确保你的 OpenClaw 连接到你偏好的消息平台（Telegram、Discord 等）。
 
-2. Start using it immediately — just text your bot anything you want to remember:
+2. 立即开始使用 —— 只需给你的机器人发送你想记住的任何内容：
 ```text
 Hey, remind me to read "Designing Data-Intensive Applications"
 Save this link: https://example.com/interesting-article
 Remember: John recommended the restaurant on 5th street
 ```
 
-3. Build the searchable UI by prompting OpenClaw:
+3. 通过向 OpenClaw 发送提示构建可搜索 UI：
 ```text
 I want to build a second brain system where I can review all our notes,
 conversations, and memories. Please build that out with Next.js.
@@ -44,21 +44,21 @@ Include:
 - Clean, minimal UI
 ```
 
-4. OpenClaw will build and deploy the entire Next.js app for you. Navigate to the URL it provides and you have your second brain dashboard.
+4. OpenClaw 会为你构建并部署整个 Next.js 应用。导航到它提供的 URL，你就有你的第二大脑仪表板了。
 
-5. From now on, whenever you think of something — on the road, in a meeting, before bed — just text your bot. Come back to the dashboard whenever you need to find something.
+5. 从现在开始，每当你想到什么 —— 在路上、在会议中、睡前 —— 只需给你的机器人发短信。当你需要找到什么时回到仪表板。
 
-## Key Insights
+## 关键要点
 
-- The power is in the **zero-friction capture**. You don't need to open an app, pick a folder, or add tags. Just text.
-- OpenClaw's memory system is cumulative — it remembers *everything* you've ever told it, making it more powerful over time.
-- You can text your bot from your phone and it builds things on your computer. The interface is the conversation.
+- 力量在于**零摩擦捕获**。你不需要打开应用、选择文件夹或添加标签。只需发短信。
+- OpenClaw 的记忆系统是累积的 —— 它记住你告诉它的*所有内容*，使其随时间变得更强大。
+- 你可以从手机给机器人发短信，它会在你的电脑上构建东西。接口就是对话。
 
-## Based On
+## 参考来源
 
-Inspired by [Alex Finn's video on life-changing OpenClaw use cases](https://www.youtube.com/watch?v=41_TNGDDnfQ).
+灵感来自 [Alex Finn 关于改变生活的 OpenClaw 使用案例的视频](https://www.youtube.com/watch?v=41_TNGDDnfQ)。
 
-## Related Links
+## 相关链接
 
-- [OpenClaw Memory System](https://github.com/openclaw/openclaw)
-- [Building a Second Brain (Tiago Forte)](https://www.buildingasecondbrain.com/)
+- [OpenClaw 记忆系统](https://github.com/openclaw/openclaw)
+- [构建第二大脑 (Tiago Forte)](https://www.buildingasecondbrain.com/)

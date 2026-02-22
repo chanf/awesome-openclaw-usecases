@@ -1,20 +1,23 @@
-# Daily Reddit Digest
-Run a daily digest everyday to give you the top performing posts from your favourite subreddits.
+# 每日 Reddit 摘要
 
-What to use it for:
+每天运行一次摘要，为你提供喜爱的 subreddit 中表现最佳的帖子。
 
-• Browsing subreddits (hot/new/top posts)
-• Searching posts by topic
-• Pulling comment threads for context
-• Building shortlists of posts to manually review/reply to later
+用途：
 
-> It's read-only. No posting, voting, or commenting.
+• 浏览 subreddit（热门/新帖/置顶帖）
+• 按主题搜索帖子
+• 拉取评论线程获取上下文
+• 建立帖子候选列表，供日后手动查看/回复
 
-## Skills you Need
-[reddit-readonly](https://clawhub.ai/buksan1950/reddit-readonly) skill. It doesn't need auth. 
+> 这是只读的。不能发帖、投票或评论。
 
-## How to Set it Up
-After installing the skill, prompt your OpenClaw:
+## 所需技能
+
+[reddit-readonly](https://clawhub.ai/buksan1950/reddit-readonly) 技能。不需要认证。
+
+## 如何设置
+
+安装技能后，向你的 OpenClaw 发送提示：
 ```text
 I want you to give me the top performing posts from the following subreddits.
 <paste the list here>

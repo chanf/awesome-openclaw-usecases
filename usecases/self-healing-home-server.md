@@ -1,46 +1,46 @@
-# Self-Healing Home Server & Infrastructure Management
+# 自愈家庭服务器与基础设施管理
 
-Running a home server means being on-call 24/7 for your own infrastructure. Services go down at 3 AM, certificates expire silently, disk fills up, and pods crash-loop — all while you're asleep or away.
+运行家庭服务器意味着对你自己的基础设施全天候待命。服务在凌晨 3 点宕机，证书静默过期，磁盘填满，pod 崩溃循环 —— 而你正在睡觉或外出。
 
-This use case turns OpenClaw into a persistent infrastructure agent with SSH access, automated cron jobs, and the ability to detect, diagnose, and fix issues before you know there's a problem.
+这个使用案例将 OpenClaw 变成一个具有 SSH 访问权限、自动化 cron 作业以及在你知道有问题之前检测、诊断和修复问题能力的持久基础设施智能体。
 
-## Pain Point
+## 痛点
 
-Home lab operators and self-hosters face a constant maintenance burden:
+家庭实验室运维者和自托管者面临持续的维护负担：
 
-- Health checks, log monitoring, and alerting require manual setup and attention
-- When something breaks, you have to SSH in, diagnose, and fix — often from your phone
-- Infrastructure-as-code (Terraform, Ansible, Kubernetes manifests) needs regular updates
-- Knowledge about your setup lives in your head, not in searchable documentation
-- Routine tasks (email triage, deployment checks, security audits) eat hours every week
+- 健康检查、日志监控和警报需要手动设置和关注
+- 当某些东西坏了，你必须 SSH 进去、诊断并修复 —— 通常从你的手机上
+- 基础设施即代码（Terraform、Ansible、Kubernetes manifests）需要定期更新
+- 关于你设置的知识存在于你的脑海中，而不是可搜索的文档中
+- 常规任务（邮件分类、部署检查、安全审计）每周消耗数小时
 
-## What It Does
+## 功能说明
 
-- **Automated health monitoring**: Cron-based checks on services, deployments, and system resources
-- **Self-healing**: Detects issues via health checks and applies fixes autonomously (restart pods, scale resources, fix configs)
-- **Infrastructure management**: Writes and applies Terraform, Ansible, and Kubernetes manifests
-- **Morning briefings**: Daily summary of system health, calendar, weather, and task board status
-- **Email triage**: Scans inbox, labels actionable items, archives noise
-- **Knowledge extraction**: Processes notes and conversation exports into a structured, searchable knowledge base
-- **Blog publishing pipeline**: Draft → generate banner → publish to CMS → deploy to hosting — fully automated
-- **Security auditing**: Regular scans for hardcoded secrets, privileged containers, and overly permissive access
+- **自动化健康监控**：基于 cron 的服务、部署和系统资源检查
+- **自愈**：通过健康检查检测问题并自主应用修复（重启 pod、扩展资源、修复配置）
+- **基础设施管理**：编写并应用 Terraform、Ansible 和 Kubernetes manifests
+- **早间简报**：系统健康、日历、天气和任务板状态的每日摘要
+- **邮件分类**：扫描收件箱、标记可操作项、归档噪音
+- **知识提取**：将笔记和对话导出处理成结构化的可搜索知识库
+- **博客发布流水线**：草稿 → 生成横幅 → 发布到 CMS → 部署到托管 —— 完全自动化
+- **安全审计**：定期扫描硬编码密钥、特权容器和过度宽松的访问
 
-## Skills You Need
+## 所需技能
 
-- `ssh` access to home network machines
-- `kubectl` for Kubernetes cluster management
-- `terraform` and `ansible` for infrastructure-as-code
-- `1password` CLI for secrets management
-- `gog` CLI for email access
-- Calendar API access
-- Obsidian vault or notes directory (for knowledge base)
-- `openclaw doctor` for self-diagnostics
+- 家庭网络机器的 `ssh` 访问
+- Kubernetes 集群管理的 `kubectl`
+- 基础设施即代码的 `terraform` 和 `ansible`
+- 密钥管理的 `1password` CLI
+- 邮件访问的 `gog` CLI
+- 日历 API 访问
+- Obsidian vault 或笔记目录（用于知识库）
+- 自诊断的 `openclaw doctor`
 
-## How to Set It Up
+## 如何设置
 
-### 1. Core Agent Configuration
+### 1. 核心智能体配置
 
-Name your agent and define its access scope in AGENTS.md:
+在 AGENTS.md 中命名你的智能体并定义其访问范围：
 
 ```text
 ## Infrastructure Agent
@@ -62,9 +62,9 @@ Rules:
 - Log all infrastructure changes to ~/logs/infra-changes.md
 ```
 
-### 2. Automated Cron Job System
+### 2. 自动化 Cron 作业系统
 
-The power of this setup is the scheduled job system. Configure in HEARTBEAT.md:
+此设置的强大之处在于计划作业系统。在 HEARTBEAT.md 中配置：
 
 ```text
 ## Cron Schedule
@@ -95,9 +95,9 @@ Weekly:
 - Infrastructure security audit
 ```
 
-### 3. Security Setup (Critical)
+### 3. 安全设置（关键）
 
-This is non-negotiable. Before giving your agent SSH access:
+这是不可协商的。在给你的智能体 SSH 访问权限之前：
 
 ```text
 ## Security Checklist
@@ -126,7 +126,7 @@ This is non-negotiable. Before giving your agent SSH access:
    - All changes logged and auditable via git
 ```
 
-### 4. Morning Briefing Template
+### 4. 早间简报模板
 
 ```text
 ## Daily Briefing Format
@@ -158,25 +158,25 @@ Generate and deliver at 8:00 AM:
 - Upcoming deadlines this week
 ```
 
-## Key Insights
+## 关键要点
 
-- **"I can't believe I have a self-healing server now"**: The agent can run SSH, Terraform, Ansible, and kubectl commands to fix infrastructure issues before you even know there's a problem
-- **AI will hardcode secrets**: This is the #1 security risk. The agent will happily put an API key inline in code if you don't enforce guardrails. Pre-push hooks and secret scanning are mandatory
-- **Local-first Git is essential**: Never let the agent push directly to public repositories. Use a private Gitea instance as a staging area with CI scanning
-- **Cron jobs are the real product**: The scheduled automation (health checks, email triage, briefings) provides more daily value than ad-hoc commands
-- **Knowledge extraction compounds**: Processing notes, conversation exports, and emails into a structured knowledge base gets more valuable over time — one user extracted 49,079 atomic facts from their ChatGPT history alone
+- **"我不敢相信我现在有一个自愈服务器"**：智能体可以运行 SSH、Terraform、Ansible 和 kubectl 命令在你甚至不知道有问题之前修复基础设施问题
+- **AI 会硬编码密钥**：这是头号安全风险。如果你不强制防护栏，智能体会很乐意在代码中内联放置 API 密钥。预推送钩子和密钥扫描是强制性的
+- **本地优先 Git 至关重要**：永远不要让智能体直接推送到公共仓库。使用私有 Gitea 实例作为带有 CI 扫描的暂存区
+- **Cron 作业是真正的产品**：计划自动化（健康检查、邮件分类、简报）比临时命令提供更多日常价值
+- **知识提取复合增长**：将笔记、对话导出和邮件处理成结构化知识库随时间变得更有价值 —— 一位用户仅从 ChatGPT 历史中提取了 49,079 个原子事实
 
-## Inspired By
+## 参考来源
 
-This use case is based on Nathan's detailed writeup ["Everything I've Done with OpenClaw (So Far)"](https://madebynathan.com/2026/02/03/everything-ive-done-with-openclaw-so-far/), where he describes his OpenClaw agent "Reef" running on a home server with SSH access to all machines, a Kubernetes cluster, 1Password integration, and an Obsidian vault with 5,000+ notes. Reef runs 15 active cron jobs, 24 custom scripts, and has autonomously built and deployed applications including a task management UI. Nathan's hard-won lesson after a Day 1 API key exposure: "AI assistants will happily hardcode secrets. They sometimes don't have the same instincts humans do." His defense-in-depth security setup (TruffleHog pre-push hooks, local Gitea, CI scanning, daily audits) is essential reading for anyone attempting this pattern.
+这个使用案例基于 Nathan 的详细文章《我用 OpenClaw 做的一切（目前为止）》，其中他描述了他的 OpenClaw 智能体 "Reef" 在家庭服务器上运行，具有对所有机器的 SSH 访问权限、一个 Kubernetes 集群、1Password 集成和一个 5,000+ 笔记的 Obsidian vault。Reef 运行 15 个活跃的 cron 作业、24 个自定义脚本，并自主构建和部署了包括任务管理 UI 在内的应用程序。Nathan 在第一天 API 密钥泄露后来之不易的教训："AI 助手会很乐意硬编码密钥。它们有时没有与人类相同的本能。" 他的深度防御安全设置（TruffleHog 预推送钩子、本地 Gitea、CI 扫描、每日审计）对于任何尝试这种模式的人来说都是必读的。
 
-Also referenced on the [OpenClaw Showcase](https://openclaw.ai/showcase), where `@georgedagg_` described a similar pattern: deployment monitoring, log review, configuration fixes, and PR submissions — all while walking the dog.
+也在 [OpenClaw Showcase](https://openclaw.ai/showcase) 上被引用，其中 `@georgedagg_` 描述了类似的模式：部署监控、日志审查、配置修复和 PR 提交 —— 全部在遛狗时完成。
 
-## Related Links
+## 相关链接
 
-- [Nathan's Full Writeup](https://madebynathan.com/2026/02/03/everything-ive-done-with-openclaw-so-far/)
-- [OpenClaw Documentation](https://github.com/openclaw/openclaw)
-- [TruffleHog (Secret Scanning)](https://github.com/trufflesecurity/trufflehog)
-- [K3s (Lightweight Kubernetes)](https://k3s.io/)
-- [Gitea (Self-hosted Git)](https://gitea.io/)
-- [n8n (Workflow Automation)](https://n8n.io/)
+- [Nathan 的完整文章](https://madebynathan.com/2026/02/03/everything-ive-done-with-openclaw-so-far/)
+- [OpenClaw 文档](https://github.com/openclaw/openclaw)
+- [TruffleHog（密钥扫描）](https://github.com/trufflesecurity/trufflehog)
+- [K3s（轻量级 Kubernetes）](https://k3s.io/)
+- [Gitea（自托管 Git）](https://gitea.io/)
+- [n8n（工作流自动化）](https://n8n.io/)

@@ -1,24 +1,24 @@
-# Health & Symptom Tracker
+# 健康与症状追踪器
 
-Identifying food sensitivities requires consistent logging over time, which is tedious to maintain. You need reminders to log and analysis to spot patterns.
+识别食物敏感性需要长期持续记录，这很繁琐。你需要提醒来记录和分析来发现模式。
 
-This workflow tracks food and symptoms automatically:
+这个工作流程自动追踪食物和症状：
 
-• Message your food and symptoms in a dedicated Telegram topic and OpenClaw logs everything with timestamps
-• 3x daily reminders (morning, midday, evening) prompt you to log meals
-• Over time, analyzes patterns to identify potential triggers
+• 在专门的 Telegram 主题中发送你的食物和症状，OpenClaw 会记录所有内容并带有时间戳
+• 每天 3 次提醒（早上、中午、晚上）提示你记录餐食
+• 随着时间推移，分析模式以识别潜在诱因
 
-## Skills you Need
+## 所需技能
 
-- Cron jobs for reminders
-- Telegram topic for logging
-- File storage (markdown log file)
+- Cron 作业用于提醒
+- Telegram 主题用于记录
+- 文件存储（markdown 日志文件）
 
-## How to Set it Up
+## 如何设置
 
-1. Create a Telegram topic called "health-tracker" (or similar).
-2. Create a log file: `~/clawd/memory/health-log.md`
-3. Prompt OpenClaw:
+1. 创建一个名为 "health-tracker" 的 Telegram 主题（或类似名称）。
+2. 创建日志文件：`~/clawd/memory/health-log.md`
+3. 向 OpenClaw 发送提示：
 ```text
 When I message in the "health-tracker" topic:
 1. Parse the message for food items and symptoms
@@ -38,4 +38,4 @@ Every Sunday, analyze the past week's log and identify patterns:
 Post the analysis to the health-tracker topic.
 ```
 
-4. Optional: Add a memory file for OpenClaw to track known triggers and update it as patterns emerge.
+4. 可选：为 OpenClaw 添加一个记忆文件来追踪已知诱因，随着模式出现更新它。

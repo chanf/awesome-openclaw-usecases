@@ -1,22 +1,24 @@
-# X Account Analysis
+# X 账号分析
 
-There are many websites designed to give you a qualitative analysis of your X account. While X already gives you an **analytics** section, it's more focused to show your numbers on your performance.
+有许多网站可以为你提供 X 账号的定性分析。虽然 X 已经为你提供了**分析**部分，但它更侧重于显示你的表现数据。
 
-But a qualitative analysis focuses on the quality of your posts, not the performance stats. Some insights you can get from this type of analysis:
-- What are the patterns that make my posts go viral?
-- What topics I talk about get me most engagement?
-- Why do I get posts with 1000+ likes but sometimes posts with <5 likes? What am I doing wrong?
+但定性分析关注的是你帖子的质量，而不是表现统计数据。你可以从这类分析中获得一些洞察：
+- 让我的帖子爆火的模式是什么？
+- 我谈论的哪些话题获得最多互动？
+- 为什么我有些帖子有 1000+ 点赞，但有时帖子只有 <5 点赞？我做错了什么？
 
-There are many websites and apps designed to give you X analytics, but they focus on the statistics. There are probably 1-2 websites that let you talk with an AI to understand your performance. 
+有许多网站和应用程序为你提供 X 分析，但它们专注于统计数据。可能只有 1-2 个网站让你与 AI 对话来了解你的表现。
 
-But now you can use OpenClaw to do this analysis for you, without needing to pay $10-$50 for subscriptions on these websites.
+但现在你可以使用 OpenClaw 为你进行这种分析，而不需要为这些网站的订阅支付 10-50 美元。
 
-## Skills you Need
-Bird Skill. `clawhub install bird` (it comes pre-bundled)
+## 所需技能
 
-## How to Set it Up
-Here's the flow:
-1. Make sure Bird skill is working.
-2. For security and isolation, you better create a new account for your ClawdBot.
-3. Auth with your X account. log into x.com in Chrome/Brave, and provide the right cookie information (`auth-token`, `ct0`) so OpenClaw can access your account.
-4. Ask OpenClaw to take a look at your real account, fetch the last N tweets, and ask it any questions you like. Alternatively, you can ask it to write you specific scripts.
+Bird 技能。`clawhub install bird`（预装）
+
+## 如何设置
+
+流程如下：
+1. 确保 Bird 技能正常工作。
+2. 为了安全和隔离，最好为你的 ClawdBot 创建一个新账户。
+3. 用你的 X 账号进行认证。在 Chrome/Brave 中登录 x.com，并提供正确的 cookie 信息（`auth-token`、`ct0`）以便 OpenClaw 访问你的账户。
+4. 让 OpenClaw 查看你的真实账户，获取最近 N 条推文，并向它提问任何你想要的问题。或者，你可以让它为你编写特定的脚本。

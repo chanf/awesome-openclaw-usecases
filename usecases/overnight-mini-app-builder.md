@@ -1,32 +1,32 @@
-# Goal-Driven Autonomous Tasks
+# 目标驱动的自主任务
 
-Your AI agent is powerful but reactive — it only works when you tell it what to do. What if it knew your goals and proactively came up with tasks to move you closer to them every single day, without being asked?
+你的 AI 智能体很强大但是是被动的 —— 它只在你告诉它做什么时才工作。如果它知道你的目标，并且每天主动提出让你更接近目标的任务，而不需要被询问呢？
 
-This workflow turns OpenClaw into a self-directed employee. You brain dump your goals once, and the agent autonomously generates, schedules, and completes tasks that advance those goals — including building you surprise mini-apps overnight.
+这个工作流程将 OpenClaw 变成一个自主的员工。你只需一次性倾泻你的目标，智能体就会自主生成、安排并完成推进这些目标的任务 —— 包括在一夜之间为你构建惊喜的迷你应用。
 
-## What It Does
+## 功能说明
 
-- You brain dump all your goals, missions, and objectives into OpenClaw (personal and professional)
-- Every morning, the agent generates 4-5 tasks it can complete autonomously on your computer
-- Tasks go beyond app building: research, writing scripts, building features, creating content, analyzing competitors
-- The agent executes the tasks itself and tracks them on a custom Kanban board it builds for you
-- You can also have it build you a surprise mini-app every night — a new SaaS idea, a tool that automates a boring part of your life, shipped as an MVP
+- 你将所有目标、使命和目的倾泻到 OpenClaw 中（个人和职业）
+- 每天早上，智能体生成 4-5 个它可以在你的电脑上自主完成的任务
+- 任务超越应用构建：研究、编写脚本、构建功能、创建内容、分析竞争对手
+- 智能体自己执行任务，并在它为你构建的自定义看板上追踪它们
+- 你还可以让它每天晚上为你构建一个惊喜迷你应用 —— 一个新的 SaaS 创意、一个自动化你生活中无聊部分的工具，作为 MVP 发布
 
-## Pain Point
+## 痛点
 
-Most people have big goals but struggle to break them into daily actionable steps. And even when they do, execution takes all their time. This system offloads both the planning AND the execution to your AI agent. You define the destination; the agent figures out the daily steps and walks them.
+大多数人有大目标，但难以将其分解为每日可执行的步骤。即使做到了，执行也需要所有时间。这个系统将计划和执行都交给你的 AI 智能体。你定义目的地；智能体找出每日步骤并走完它们。
 
-## Skills You Need
+## 所需技能
 
-- Telegram or Discord integration
-- `sessions_spawn` / `sessions_send` for autonomous task execution
-- Next.js or similar (for the Kanban board — OpenClaw builds it for you)
+- Telegram 或 Discord 集成
+- `sessions_spawn` / `sessions_send` 用于自主任务执行
+- Next.js 或类似框架（用于看板 —— OpenClaw 为你构建）
 
-## How to Set It Up
+## 如何设置
 
-### Step 1: Brain Dump Your Goals
+### 第一步：倾泻你的目标
 
-This is the most important step. Text your OpenClaw everything you're trying to accomplish:
+这是最重要的一步。告诉你的 OpenClaw 你想完成的一切：
 
 ```text
 Here are my goals and missions. Remember all of this:
@@ -48,7 +48,7 @@ Business:
 Use this context for everything you do going forward.
 ```
 
-### Step 2: Set Up Autonomous Daily Tasks
+### 第二步：设置自主每日任务
 
 ```text
 Every morning at 8:00 AM, come up with 4-5 tasks that you can complete
@@ -65,7 +65,7 @@ Then schedule and complete those tasks yourself. Examples:
 Track all tasks on a Kanban board. Update the board as you complete them.
 ```
 
-### Step 3: Build the Kanban Board (Optional)
+### 第三步：构建看板（可选）
 
 ```text
 Build me a Kanban board in Next.js where I can see all the tasks you're
@@ -73,19 +73,19 @@ working on. Show columns for To Do, In Progress, and Done. Update it
 in real-time as you complete tasks.
 ```
 
-## Key Insights
+## 关键要点
 
-- The **brain dump is everything**. The more context you give about your goals, the better the agent's daily tasks will be. Don't hold back.
-- The agent discovers tasks you wouldn't have thought of. It connects dots across your goals and finds opportunities you'd miss.
-- The Kanban board turns your agent into a trackable employee. You can see exactly what it's been doing and course-correct.
-- For overnight app building specifically: explicitly tell it to build MVPs and not to overcomplicate. You'll wake up every morning with a new surprise.
-- This compounds over time — the agent learns what kinds of tasks are most helpful and adjusts.
+- **倾泻目标就是一切**。你提供的关于目标的上下文越多，智能体的每日任务就越好。不要保留。
+- 智能体会发现你不会想到的任务。它将你的目标联系起来，找到你会错过的机会。
+- 看板将你的智能体变成一个可追踪的员工。你可以确切看到它在做什么并进行纠正。
+- 对于夜间应用构建：明确告诉它构建 MVP，不要过于复杂。你每天早上都会醒来发现新的惊喜。
+- 这会随时间复合 —— 智能体学习哪种任务最有帮助并进行调整。
 
-## Based On
+## 参考来源
 
-Inspired by [Alex Finn](https://www.youtube.com/watch?v=UTCi_q6iuCM&t=414s) and his [video on life-changing OpenClaw use cases](https://www.youtube.com/watch?v=41_TNGDDnfQ).
+灵感来自 [Alex Finn](https://www.youtube.com/watch?v=UTCi_q6iuCM&t=414s) 和他关于改变生活的 OpenClaw 使用案例的[视频](https://www.youtube.com/watch?v=41_TNGDDnfQ)。
 
-## Related Links
+## 相关链接
 
-- [OpenClaw Memory System](https://github.com/openclaw/openclaw)
-- [OpenClaw Subagent Docs](https://github.com/openclaw/openclaw)
+- [OpenClaw 记忆系统](https://github.com/openclaw/openclaw)
+- [OpenClaw 子智能体文档](https://github.com/openclaw/openclaw)

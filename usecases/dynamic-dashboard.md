@@ -1,43 +1,43 @@
-# Dynamic Dashboard with Sub-agent Spawning
+# 带子智能体生成的动态仪表板
 
-Static dashboards show stale data and require constant manual updates. You want real-time visibility across multiple data sources without building a custom frontend or hitting API rate limits.
+静态仪表板显示陈旧数据，需要不断手动更新。你想要跨多个数据源的实时可见性，而不需要构建自定义前端或触碰 API 速率限制。
 
-This workflow creates a live dashboard that spawns sub-agents to fetch and process data in parallel:
+这个工作流程创建一个实时仪表板，生成子智能体并行获取和处理数据：
 
-• Monitors multiple data sources simultaneously (APIs, databases, GitHub, social media)
-• Spawns sub-agents for each data source to avoid blocking and distribute API load
-• Aggregates results into a unified dashboard (text, HTML, or Canvas)
-• Updates every N minutes with fresh data
-• Sends alerts when metrics cross thresholds
-• Maintains historical trends in a database for visualization
+• 同时监控多个数据源（API、数据库、GitHub、社交媒体）
+• 为每个数据源生成子智能体以避免阻塞和分散 API 负载
+• 将结果聚合到统一仪表板（文本、HTML 或 Canvas）
+• 每 N 分钟用新数据更新
+• 当指标越过阈值时发送警报
+• 在数据库中维护历史趋势以供可视化
 
-## Pain Point
+## 痛点
 
-Building a custom dashboard takes weeks. By the time it's done, requirements have changed. Polling multiple APIs sequentially is slow and hits rate limits. You need insight now, not after a weekend of coding.
+构建自定义仪表板需要数周时间。当它完成时，需求已经改变了。顺序轮询多个 API 很慢且会触及速率限制。你需要现在就获得洞察，而不是一个周末的编码之后。
 
-## What It Does
+## 功能说明
 
-You define what you want to monitor conversationally: "Track GitHub stars, Twitter mentions, Polymarket volume, and system health." OpenClaw spawns sub-agents to fetch each data source in parallel, aggregates the results, and delivers a formatted dashboard to Discord or as an HTML file. Updates run automatically on a cron schedule.
+你通过对话定义你想监控的内容："追踪 GitHub stars、Twitter 提及、Polymarket 交易量和系统健康。"OpenClaw 生成子智能体并行获取每个数据源，聚合结果，并将格式化的仪表板发送到 Discord 或作为 HTML 文件。更新通过 cron 计划自动运行。
 
-Example dashboard sections:
-- **GitHub**: stars, forks, open issues, recent commits
-- **Social Media**: Twitter mentions, Reddit discussions, Discord activity
-- **Markets**: Polymarket volume, prediction trends
-- **System Health**: CPU, memory, disk usage, service status
+示例仪表板部分：
+- **GitHub**：stars、forks、open issues、最近提交
+- **社交媒体**：Twitter 提及、Reddit 讨论、Discord 活动
+- **市场**：Polymarket 交易量、预测趋势
+- **系统健康**：CPU、内存、磁盘使用、服务状态
 
-## Skills Needed
+## 所需技能
 
-- Sub-agent spawning for parallel execution
-- `github` (gh CLI) for GitHub metrics
-- `bird` (Twitter) for social data
-- `web_search` or `web_fetch` for external APIs
-- `postgres` for storing historical metrics
-- Discord or Canvas for rendering the dashboard
-- Cron jobs for scheduled updates
+- 子智能体生成用于并行执行
+- `github`（gh CLI）用于 GitHub 指标
+- `bird`（Twitter）用于社交数据
+- `web_search` 或 `web_fetch` 用于外部 API
+- `postgres` 用于存储历史指标
+- Discord 或 Canvas 用于渲染仪表板
+- Cron 作业用于计划更新
 
-## How to Set it Up
+## 如何设置
 
-1. Set up a metrics database:
+1. 设置指标数据库：
 ```sql
 CREATE TABLE metrics (
   id SERIAL PRIMARY KEY,
@@ -56,9 +56,9 @@ CREATE TABLE alerts (
 );
 ```
 
-2. Create a Discord channel for dashboard updates (e.g., #dashboard).
+2. 创建一个 Discord 频道用于仪表板更新（例如 #dashboard）。
 
-3. Prompt OpenClaw:
+3. 向 OpenClaw 发送提示：
 ```text
 You are my dynamic dashboard manager. Every 15 minutes, run a cron job to:
 
@@ -103,11 +103,11 @@ You are my dynamic dashboard manager. Every 15 minutes, run a cron job to:
 Store all metrics in the database for historical analysis.
 ```
 
-4. Optional: Use Canvas to render an HTML dashboard with charts and graphs.
+4. 可选：使用 Canvas 渲染带有图表和图形的 HTML 仪表板。
 
-5. Query historical data: "Show me GitHub star growth over the past 30 days."
+5. 查询历史数据："显示过去 30 天 GitHub star 增长。"
 
-## Related Links
+## 相关链接
 
-- [Parallel Processing with Sub-agents](https://docs.openclaw.ai/subagents)
-- [Dashboard Design Principles](https://www.nngroup.com/articles/dashboard-design/)
+- [使用子智能体的并行处理](https://docs.openclaw.ai/subagents)
+- [仪表板设计原则](https://www.nngroup.com/articles/dashboard-design/)

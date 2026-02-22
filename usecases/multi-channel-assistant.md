@@ -1,41 +1,41 @@
-# Multi-Channel Personal Assistant
+# 多渠道个人助理
 
-Context-switching between apps to manage tasks, schedule events, send messages, and track work is exhausting. You want one interface that routes to all your tools.
+在不同应用之间切换来管理任务、安排事件、发送消息和追踪工作是令人疲惫的。你想要一个接口路由到所有你的工具。
 
-This workflow consolidates everything into a single AI assistant:
+这个工作流程将一切整合到一个单一的 AI 助理中：
 
-• Telegram as primary interface with topic-based routing (different topics for video ideas, CRM, earnings, config, etc.)
-• Slack integration for team collaboration (task assignment, knowledge base saves, video idea triggers)
-• Google Workspace: create calendar events, manage email, upload to Drive — all from chat
-• Todoist for quick task capture
-• Asana for project management
-• Automated reminders: trash day, weekly company letter, etc.
+• Telegram 作为主要接口，带有基于主题的路由（不同主题用于视频创意、CRM、收益、配置等）
+• Slack 集成用于团队协作（任务分配、知识库保存、视频创意触发）
+• Google Workspace：创建日历事件、管理邮件、上传到 Drive —— 全部通过聊天完成
+• Todoist 用于快速任务捕获
+• Asana 用于项目管理
+- 自动提醒：垃圾日、每周公司信件等
 
-## Skills you Need
+## 所需技能
 
-- `gog` CLI (Google Workspace)
-- Slack integration (bot + user tokens)
-- Todoist API or skill
-- Asana API or skill
-- Telegram channel with multiple topics configured
+- `gog` CLI（Google Workspace）
+- Slack 集成（bot + user tokens）
+- Todoist API 或技能
+- Asana API 或技能
+- 配置了多个主题的 Telegram 频道
 
-## How to Set it Up
+## 如何设置
 
-1. Set up Telegram topics for different contexts:
-   - `config` — bot settings and debugging
-   - `updates` — status and notifications
-   - `video-ideas` — content pipeline
-   - `personal-crm` — contact management
-   - `earnings` — financial tracking
-   - `knowledge-base` — RAG ingestion and queries
+1. 为不同上下文设置 Telegram 主题：
+   - `config` — 机器人设置和调试
+   - `updates` — 状态和通知
+   - `video-ideas` — 内容流水线
+   - `personal-crm` — 联系人管理
+   - `earnings` — 财务追踪
+   - `knowledge-base` — RAG 摄取和查询
 
-2. Connect all your tools via OpenClaw config:
-   - Google OAuth (Gmail, Calendar, Drive)
-   - Slack (app + user tokens)
+2. 通过 OpenClaw 配置连接所有工具：
+   - Google OAuth（Gmail、Calendar、Drive）
+   - Slack（app + user tokens）
    - Todoist API token
    - Asana API token
 
-3. Prompt OpenClaw:
+3. 向 OpenClaw 发送提示：
 ```text
 You are my multi-channel assistant. Route requests based on context:
 
@@ -59,4 +59,4 @@ Set up automated reminders:
 - Friday 3 PM: "✍️ Time to write the weekly company update"
 ```
 
-4. Test each integration individually, then test cross-workflow interactions (e.g., saving a Slack link to knowledge base, then using it in a video research card).
+4. 分别测试每个集成，然后测试跨工作流交互（例如，将 Slack 链接保存到知识库，然后在视频研究卡片中使用它）。

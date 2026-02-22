@@ -1,44 +1,44 @@
-# Multi-Channel AI Customer Service Platform
+# 多渠道 AI 客户服务平台
 
-Small businesses juggle WhatsApp, Instagram DMs, emails, and Google Reviews across multiple apps. Customers expect instant responses 24/7, but hiring staff for round-the-clock coverage is expensive.
+小企业在多个应用中同时处理 WhatsApp、Instagram DM、电子邮件和 Google 评论。客户期望 24/7 即时响应，但雇佣员工进行全天候覆盖成本高昂。
 
-This use case consolidates all customer touchpoints into a single AI-powered inbox that responds intelligently on your behalf.
+这个使用案例将所有客户触点整合到一个单一的支持智能收件箱，自动代表你响应。
 
-## What It Does
+## 功能说明
 
-- **Unified inbox**: WhatsApp Business, Instagram DMs, Gmail, and Google Reviews in one place
-- **AI auto-responses**: Handles FAQs, appointment requests, and common inquiries automatically
-- **Human handoff**: Escalates complex issues or flags them for review
-- **Test mode**: Demo the system to clients without affecting real customers
-- **Business context**: Trained on your services, pricing, and policies
+- **统一收件箱**：WhatsApp Business、Instagram DM、Gmail 和 Google 评论集中在一处
+- **AI 自动响应**：自动处理常见问题、预约请求和常见咨询
+- **人工接管**：升级复杂问题或标记以供审查
+- **测试模式**：向客户演示系统而不影响真实客户
+- **业务上下文**：基于你的服务、定价和政策进行训练
 
-## Real Business Example
+## 真实业务示例
 
-At Futurist Systems, we deploy this for local service businesses (restaurants, clinics, salons). One restaurant reduced response time from 4+ hours to under 2 minutes, handling 80% of inquiries automatically.
+在 Futurist Systems，我们为本地服务企业（餐厅、诊所、沙龙）部署此系统。一家餐厅将响应时间从 4+ 小时缩短到 2 分钟以内，自动处理 80% 的咨询。
 
-## Skills You Need
+## 所需技能
 
-- WhatsApp Business API integration
-- Instagram Graph API (via Meta Business)
-- `gog` CLI for Gmail
-- Google Business Profile API for reviews
-- Message routing logic in AGENTS.md
+- WhatsApp Business API 集成
+- Instagram Graph API（通过 Meta Business）
+- `gog` CLI 用于 Gmail
+- Google Business Profile API 用于评论
+- AGENTS.md 中的消息路由逻辑
 
-## How to Set It Up
+## 如何设置
 
-1. **Connect channels** via OpenClaw config:
-   - WhatsApp Business API (through 360dialog or official API)
-   - Instagram via Meta Business Suite
-   - Gmail via `gog` OAuth
+1. **连接渠道**通过 OpenClaw 配置：
+   - WhatsApp Business API（通过 360dialog 或官方 API）
+   - Instagram 通过 Meta Business Suite
+   - Gmail 通过 `gog` OAuth
    - Google Business Profile API token
 
-2. **Create business knowledge base**:
-   - Services and pricing
-   - Business hours and location
-   - FAQ responses
-   - Escalation triggers (e.g., complaints, refund requests)
+2. **创建业务知识库**：
+   - 服务和定价
+   - 营业时间和位置
+   - 常见问题回答
+   - 升级触发器（例如，投诉、退款请求）
 
-3. **Configure AGENTS.md** with routing logic:
+3. **在 AGENTS.md 中配置**路由逻辑：
 
 ```text
 ## Customer Service Mode
@@ -64,7 +64,7 @@ Test mode:
 - Log but don't send to real channels
 ```
 
-4. **Set up heartbeat checks** for response monitoring:
+4. **设置心跳检查**用于响应监控：
 
 ```text
 ## Heartbeat: Customer Service Check
@@ -75,14 +75,14 @@ Every 30 minutes:
 - Log daily response metrics
 ```
 
-## Key Insights
+## 关键要点
 
-- **Language detection matters**: Auto-detect and respond in customer's language
-- **Test mode is essential**: Clients need to see it work before going live
-- **Handoff rules**: Define clear escalation triggers to avoid AI overreach
-- **Response templates**: Pre-approved templates for sensitive topics (refunds, complaints)
+- **语言检测很重要**：自动检测并用客户的语言响应
+- **测试模式至关重要**：客户需要在上线前看到它工作
+- **接管规则**：定义明确的升级触发器以避免 AI 越权
+- **响应模板**：敏感话题（退款、投诉）的预批准模板
 
-## Related Links
+## 相关链接
 
 - [WhatsApp Business API](https://developers.facebook.com/docs/whatsapp)
 - [Instagram Messaging API](https://developers.facebook.com/docs/instagram-api/guides/messaging)

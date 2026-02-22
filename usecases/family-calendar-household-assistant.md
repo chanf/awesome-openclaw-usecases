@@ -1,37 +1,37 @@
-# Family Calendar Aggregation & Household Assistant
+# 家庭日历聚合与家务助理
 
-Modern families juggle five or more calendars — work, personal, shared family, kids' school, extracurriculars — across different platforms and formats. Important events slip through the cracks because no single view exists. Meanwhile, household coordination (grocery lists, pantry inventory, appointment scheduling) happens through scattered text messages that get buried.
+现代家庭管理五个或更多日历 —— 工作、个人、共享家庭、孩子的学校、课外活动 —— 跨越不同平台和格式。重要事件会从缝隙中溜走，因为不存在单一视图。与此同时，家务协调（购物清单、食品储藏室库存、预约安排）通过分散的短信进行，这些短信会被埋没。
 
-This use case turns OpenClaw into an always-on household coordinator: aggregating calendars into a morning briefing, monitoring messages for actionable items, and managing household logistics through a shared chat interface.
+这个使用案例将 OpenClaw 变成一个全天候的家庭协调员：将日历聚合到早间简报中，监控消息以获取可操作事项，并通过共享聊天界面管理家务物流。
 
-## Pain Point
+## 痛点
 
-- **Calendar fragmentation**: Work calendars have security restrictions preventing sharing. School calendars arrive as PDFs or hand-written websites. Camp schedules live in emails. Manually checking each one every morning is unsustainable — and "copying events across calendars works well until I forget and one slips through the cracks."
-- **Household coordination overhead**: "How much milk do we have?" requires physically checking the fridge, then the basement pantry, then texting back. Multiply this across a week's worth of grocery runs.
-- **Missed appointments**: Appointment confirmations arrive via text message and sit there unacted upon — no calendar event, no driving time buffer, no reminder.
+- **日历碎片化**：工作日历有安全限制阻止共享。学校日历以 PDF 或手写网站形式到达。夏令营日程存在于电子邮件中。每天早上手动检查每一个是不可持续的 —— "跨日历复制事件很有效，直到我忘记，一个事件就会从缝隙中溜走。"
+- **家务协调开销**："我们有多少牛奶？"需要物理检查冰箱，然后检查地下室储藏室，然后发短信回复。一周的购物行程都要这样。
+- **错过的预约**：预约确认通过短信到达并停留在那里未处理 —— 没有日历事件，没有驾驶时间缓冲，没有提醒。
 
-## What It Does
+## 功能说明
 
-- **Morning briefing**: Aggregates all family calendars into a single daily summary delivered via your preferred channel
-- **Ambient message monitoring**: Watches iMessage/text conversations and automatically creates calendar events when it detects appointments (dentist confirmations, meeting plans, etc.)
-- **Driving time buffers**: Adds travel time blocks before and after detected appointments
-- **Household inventory**: Maintains a running inventory of pantry/fridge items that either partner can query from anywhere
-- **Grocery coordination**: Deduplicates ingredients across recipes, tracks what's running low, and generates shopping lists
-- **Photo-based input**: Snap a photo of a school calendar or freezer contents and the agent processes it into structured data
+- **早间简报**：将所有家庭日历聚合到一个每日摘要中，通过你偏好的渠道发送
+- **环境消息监控**：监视 iMessage/短信对话，当检测到预约时自动创建日历事件（牙医确认、会议计划等）
+- **驾驶时间缓冲**：在检测到的预约前后添加旅行时间块
+- **家庭库存**：维护食品储藏室/冰箱物品的运行库存，任一伴侣可以从任何地方查询
+- **购物协调**：跨食谱去重配料，追踪快用完的东西，生成购物清单
+- **基于照片的输入**：拍摄学校日历或冰箱内容的照片，智能体将其处理成结构化数据
 
-## Skills You Need
+## 所需技能
 
-- Calendar API access (Google Calendar, Apple Calendar via `ical`)
-- `imessage` skill for message monitoring (macOS only)
-- Telegram or Slack for the shared family chat interface
-- File system access for inventory tracking
-- Camera/photo processing for OCR of physical calendars
+- 日历 API 访问（Google Calendar、通过 `ical` 的 Apple Calendar）
+- `imessage` 技能用于消息监控（仅限 macOS）
+- Telegram 或 Slack 用于共享家庭聊天界面
+- 文件系统访问用于库存追踪
+- 相机/照片处理用于物理日历的 OCR
 
-## How to Set It Up
+## 如何设置
 
-### 1. Calendar Aggregation
+### 1. 日历聚合
 
-Configure OpenClaw to pull from all family calendar sources:
+配置 OpenClaw 从所有家庭日历来源拉取：
 
 ```text
 ## Calendar Sources
@@ -53,9 +53,9 @@ Compile into a single briefing:
 Deliver via Telegram/Slack family channel.
 ```
 
-### 2. Ambient Message Monitoring
+### 2. 环境消息监控
 
-This is the key differentiator — the agent watches passively and acts when it recognizes something actionable:
+这是关键区别 —— 智能体被动监视并在识别到可操作内容时行动：
 
 ```text
 ## Message Monitoring (HEARTBEAT.md)
@@ -77,7 +77,7 @@ Every 15 minutes:
    → Create calendar hold or reminder
 ```
 
-### 3. Household Inventory
+### 3. 家庭库存
 
 ```text
 ## Pantry Tracking
@@ -98,26 +98,26 @@ Query: Either partner can ask via Telegram:
 - "Generate grocery list" → Compile low-stock items + any recipe ingredients needed
 ```
 
-## Key Insights
+## 关键要点
 
-- **Ambient > active**: The biggest unlock is the agent acting without being asked. Detecting an appointment in a text message and creating a calendar event with driving buffers — "I didn't ask it to do that. It just knew that's what I'd want."
-- **Mac Mini is the sweet spot**: This use case benefits heavily from running on a home Mac Mini — iMessage integration, Apple Calendar, and always-on availability
-- **Start read-only**: Begin with calendar reading and message monitoring before enabling write actions (creating events, sending messages)
-- **Shared Telegram channel**: Gives both partners visibility into what the agent is doing — builds trust and catches errors early
-- **Photo input is underrated**: Snapping a photo of a school calendar PDF or freezer contents is faster than typing — and the vision model handles it well
+- **环境 > 主动**：最大的解锁是智能体在没有被要求的情况下行动。在短信中检测到预约并创建带有驾驶缓冲的日历事件 —— "我没有要求它这样做。它只是知道那是我想要的。"
+- **Mac Mini 是最佳选择**：这个使用案例在很大程度上受益于在家庭 Mac Mini 上运行 —— iMessage 集成、Apple Calendar 和全天候可用性
+- **从只读开始**：在启用写入操作（创建事件、发送消息）之前从日历读取和消息监控开始
+- **共享 Telegram 频道**：让两个伴侣都能看到智能体在做什么 —— 建立信任并及早发现错误
+- **照片输入被低估**：拍摄学校日历 PDF 或冰箱内容的照片比打字更快 —— 视觉模型处理得很好
 
-## Inspired By
+## 参考来源
 
-This use case combines several community patterns:
+这个使用案例结合了几个社区模式：
 
-- **Calendar aggregation**: Described by HN user `angiolillo` in [a Hacker News discussion](https://news.ycombinator.com/item?id=46872465), who detailed the pain of checking work, personal, family, and kids' school calendars separately each morning.
-- **Ambient message monitoring**: Documented by [Sparkry AI](https://sparkryai.substack.com/p/24-hours-with-openclaw-the-ai-setup) — when a wife received a dental appointment text, OpenClaw automatically created a calendar event with 30-minute driving buffers, without being asked. Also confirmed on the [OpenClaw Showcase](https://openclaw.ai/showcase) where `@theaaron` called chat-based calendar management "one of the best uses of an LLM I've ever experienced."
-- **Household coordination**: Brandon Wang's [Clawdbot "Linguini"](https://brandon.wang/2026/clawdbot) running on a Mac Mini at home — handling text message follow-ups, creating calendar events from photos, tracking Airbnb prices, processing freezer inventory photos, and coordinating household logistics via iMessage and Slack.
-- **Pantry tracking**: Multiple HN users discussed the value (and challenge) of maintaining household inventory, with `dns_snek` noting: "I forget where I put things down 5 seconds ago... It's genuinely a big problem for me because I let things expire."
+- **日历聚合**：由 HN 用户 `angiolillo` 在 [Hacker News 讨论](https://news.ycombinator.com/item?id=46872465)中描述，详细说明了每天早上分别检查工作、个人、家庭和孩子学校日历的痛苦。
+- **环境消息监控**：由 [Sparkry AI](https://sparkryai.substack.com/p/24-hours-with-openclaw-the-ai-setup) 记录 —— 当妻子收到牙医预约短信时，OpenClaw 自动创建了带有 30 分钟驾驶缓冲的日历事件，无需被要求。也在 [OpenClaw Showcase](https://openclaw.ai/showcase) 上确认，其中 `@theaaron` 称基于聊天的日历管理"是我体验过的 LLM 最好用法之一"。
+- **家务协调**：Brandon Wang 的在家庭 Mac Mini 上运行的 [Clawdbot "Linguini"](https://brandon.wang/2026/clawdbot) —— 处理短信跟进、从照片创建日历事件、追踪 Airbnb 价格、处理冰箱库存照片，并通过 iMessage 和 Slack 协调家务物流。
+- **食品储藏室追踪**：多位 HN 用户讨论了维护家庭库存的价值（和挑战），`dns_snek` 指出："我忘记 5 秒前把东西放在哪里了...这对我来说真的是个大问题，因为我会让东西过期。"
 
-## Related Links
+## 相关链接
 
-- [OpenClaw iMessage Skill](https://github.com/openclaw/openclaw)
+- [OpenClaw iMessage 技能](https://github.com/openclaw/openclaw)
 - [Google Calendar API](https://developers.google.com/calendar)
 - [Apple Calendar (EventKit)](https://developer.apple.com/documentation/eventkit)
-- [OpenClaw Showcase — Calendar Testimonials](https://openclaw.ai/showcase)
+- [OpenClaw Showcase — 日历推荐](https://openclaw.ai/showcase)

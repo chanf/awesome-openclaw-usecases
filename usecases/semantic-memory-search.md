@@ -1,70 +1,70 @@
-# Semantic Memory Search
+# 语义记忆搜索
 
-OpenClaw's built-in memory system stores everything as markdown files — but as memories grow over weeks and months, finding that one decision from last Tuesday becomes impossible. There is no search, just scrolling through files.
+OpenClaw 的内置记忆系统将所有内容存储为 markdown 文件 —— 但随着记忆在数周和数月内增长，找到上周二做出的那个决策变得不可能。没有搜索，只能滚动文件。
 
-This use case adds **vector-powered semantic search** on top of OpenClaw's existing markdown memory files using [memsearch](https://github.com/zilliztech/memsearch), so you can instantly find any past memory by meaning, not just keywords.
+这个使用案例使用 [memsearch](https://github.com/zilliztech/memsearch) 在 OpenClaw 现有的 markdown 记忆文件之上添加**向量驱动的语义搜索**，这样你可以按意思即时找到任何过去的记忆，而不仅仅是关键词。
 
-## What It Does
+## 功能说明
 
-- Index all your OpenClaw markdown memory files into a vector database (Milvus) with a single command
-- Search by meaning: "what caching solution did we pick?" finds the relevant memory even if the word "caching" does not appear
-- Hybrid search (dense vectors + BM25 full-text) with RRF reranking for best results
-- SHA-256 content hashing means unchanged files are never re-embedded — zero wasted API calls
-- File watcher auto-reindexes when memory files change, so the index is always up to date
-- Works with any embedding provider: OpenAI, Google, Voyage, Ollama, or fully local (no API key needed)
+- 用单个命令将所有 OpenClaw markdown 记忆文件索引到向量数据库（Milvus）中
+- 按意思搜索："我们选择了什么缓存方案？"即使"缓存"一词没有出现也能找到相关记忆
+- 混合搜索（稠密向量 + BM25 全文）配合 RRF 重排序获得最佳结果
+- SHA-256 内容哈希意味着未更改的文件永远不会重新嵌入 —— 零浪费的 API 调用
+- 文件监视器在记忆文件更改时自动重新索引，因此索引始终是最新的
+- 适用于任何嵌入提供商：OpenAI、Google、Voyage、Ollama 或完全本地（不需要 API 密钥）
 
-## Pain Point
+## 痛点
 
-OpenClaw's memory is stored as plain markdown files. This is great for portability and human readability, but it has no search. As your memory grows, you either have to grep through files (keyword-only, misses semantic matches) or load entire files into context (wastes tokens on irrelevant content). You need a way to ask "what did I decide about X?" and get the exact relevant chunk, regardless of phrasing.
+OpenClaw 的记忆存储为纯 markdown 文件。这对可移植性和人类可读性很好，但它没有搜索。随着记忆增长，你要么必须 grep 文件（仅关键词，错过语义匹配），要么将整个文件加载到上下文中（在不相关内容上浪费 tokens）。你需要一种方法来问"我对 X 做了什么决策？"并获得确切的相关块，无论措辞如何。
 
-## Skills You Need
+## 所需技能
 
-- No OpenClaw skills required — memsearch is a standalone Python CLI/library
-- Python 3.10+ with pip or uv
+- 不需要 OpenClaw 技能 —— memsearch 是一个独立的 Python CLI/库
+- 带有 pip 或 uv 的 Python 3.10+
 
-## How to Set It Up
+## 如何设置
 
-1. Install memsearch:
+1. 安装 memsearch：
 ```bash
 pip install memsearch
 ```
 
-2. Run the interactive config wizard:
+2. 运行交互式配置向导：
 ```bash
 memsearch config init
 ```
 
-3. Index your OpenClaw memory directory:
+3. 索引你的 OpenClaw 记忆目录：
 ```bash
 memsearch index ~/path/to/your/memory/
 ```
 
-4. Search your memories by meaning:
+4. 按意思搜索你的记忆：
 ```bash
 memsearch search "what caching solution did we pick?"
 ```
 
-5. For live sync, start the file watcher — it auto-indexes on every file change:
+5. 对于实时同步，启动文件监视器 —— 它在每次文件更改时自动索引：
 ```bash
 memsearch watch ~/path/to/your/memory/
 ```
 
-6. For a fully local setup (no API keys), install the local embedding provider:
+6. 对于完全本地设置（无 API 密钥），安装本地嵌入提供商：
 ```bash
 pip install "memsearch[local]"
 memsearch config set embedding.provider local
 memsearch index ~/path/to/your/memory/
 ```
 
-## Key Insights
+## 关键要点
 
-- **Markdown stays the source of truth.** The vector index is just a derived cache — you can rebuild it anytime with `memsearch index`. Your memory files are never modified.
-- **Smart dedup saves money.** Each chunk is identified by a SHA-256 content hash. Re-running `index` only embeds new or changed content, so you can run it as often as you like without wasting embedding API calls.
-- **Hybrid search beats pure vector search.** Combining semantic similarity (dense vectors) with keyword matching (BM25) via Reciprocal Rank Fusion catches both meaning-based and exact-match queries.
+- **Markdown 保持事实来源。**向量索引只是一个派生缓存 —— 你可以随时用 `memsearch index` 重建它。你的记忆文件永远不会被修改。
+- **智能去重省钱。**每个块由 SHA-256 内容哈希标识。重新运行 `index` 只嵌入新内容或更改的内容，所以你可以随意运行而不会浪费嵌入 API 调用。
+- **混合搜索胜过纯向量搜索。**通过倒数排名融合将语义相似性（稠密向量）与关键词匹配（BM25）结合，可以同时捕获基于意思和精确匹配的查询。
 
-## Related Links
+## 相关链接
 
-- [memsearch GitHub](https://github.com/zilliztech/memsearch) — the library powering this use case
-- [memsearch Documentation](https://zilliztech.github.io/memsearch/) — full CLI reference, Python API, and architecture
-- [OpenClaw](https://github.com/openclaw/openclaw) — the memory architecture that inspired memsearch
-- [Milvus](https://milvus.io/) — the vector database backend
+- [memsearch GitHub](https://github.com/zilliztech/memsearch) — 支持此使用案例的库
+- [memsearch 文档](https://zilliztech.github.io/memsearch/) — 完整 CLI 参考、Python API 和架构
+- [OpenClaw](https://github.com/openclaw/openclaw) — 启发 memsearch 的记忆架构
+- [Milvus](https://milvus.io/) — 向量数据库后端

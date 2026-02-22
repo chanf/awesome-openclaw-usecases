@@ -1,32 +1,32 @@
-# OpenClaw + n8n Workflow Orchestration
+# OpenClaw + n8n 工作流编排
 
-Letting your AI agent directly manage API keys and call external services is a recipe for security incidents. Every new integration means another credential in `.env.local`, another surface for the agent to accidentally leak or misuse.
+让你的 AI 智能体直接管理 API 密钥和调用外部服务是安全事件的根源。每个新集成都意味着 `.env.local` 中的另一个凭证，智能体可能意外泄露或滥用的另一个攻击面。
 
-This use case describes a pattern where OpenClaw delegates all external API interactions to n8n workflows via webhooks — the agent never touches credentials, and every integration is visually inspectable and lockable.
+这个使用案例描述了一种模式，其中 OpenClaw 通过 webhook 将所有外部 API 交互委托给 n8n 工作流 —— 智能体从不接触凭证，每个集成都可以可视化检查和锁定。
 
-## Pain Point
+## 痛点
 
-When OpenClaw handles everything directly, you get three compounding problems:
+当 OpenClaw 直接处理一切时，你会遇到三个复合问题：
 
-- **No visibility**: It's hard to inspect what the agent actually built when it's buried in JavaScript skill files or shell scripts
-- **Credential sprawl**: Every API key lives in the agent's environment, one bad commit away from exposure
-- **Wasted tokens**: Deterministic sub-tasks (send an email, update a spreadsheet) burn LLM reasoning tokens when they could run as simple workflows
+- **没有可见性**：当智能体实际构建的内容深埋在 JavaScript 技能文件或 shell 脚本中时，很难检查
+- **凭证蔓延**：每个 API 密钥都存在于智能体的环境中，一次糟糕的提交就可能暴露
+- **浪费 tokens**：确定性子任务（发送电子邮件、更新电子表格）在可以简单工作流运行时却消耗 LLM 推理 tokens
 
-## What It Does
+## 功能说明
 
-- **Proxy pattern**: OpenClaw writes n8n workflows with incoming webhooks, then calls those webhooks for all future API interactions
-- **Credential isolation**: API keys live in n8n's credential store — the agent only knows the webhook URL
-- **Visual debugging**: Every workflow is inspectable in n8n's drag-and-drop UI
-- **Lockable workflows**: Once a workflow is built and tested, you lock it so the agent can't modify how it interacts with the API
-- **Safeguard steps**: You can add validation, rate limiting, and approval gates in n8n before any external call executes
+- **代理模式**：OpenClaw 编写带有传入 webhook 的 n8n 工作流，然后调用这些 webhook 进行所有未来的 API 交互
+- **凭证隔离**：API 密钥存在于 n8n 的凭证存储中 —— 智能体只知道 webhook URL
+- **可视化调试**：每个工作流都可以在 n8n 的拖放 UI 中检查
+- **可锁定工作流**：一旦工作流构建并测试完成，你锁定它，智能体就无法修改它与 API 的交互方式
+- **保护步骤**：你可以在 n8n 中添加验证、速率限制和审批门，在任何外部调用执行之前
 
-## How It Works
+## 工作原理
 
-1. **Agent designs the workflow**: Tell OpenClaw what you need (e.g., "create a workflow that sends a Slack message when a new GitHub issue is labeled `urgent`")
-2. **Agent builds it in n8n**: OpenClaw creates the workflow via n8n's API, including an incoming webhook trigger
-3. **You add credentials**: Open n8n's UI, add your Slack token / GitHub token manually
-4. **You lock the workflow**: Prevent further modifications by the agent
-5. **Agent calls the webhook**: From now on, OpenClaw calls `http://n8n:5678/webhook/my-workflow` with a JSON payload — it never sees the API key
+1. **智能体设计工作流**：告诉 OpenClaw 你需要什么（例如，"创建一个当新 GitHub issue 被标记为 `urgent` 时发送 Slack 消息的工作流"）
+2. **智能体在 n8n 中构建**：OpenClaw 通过 n8n 的 API 创建工作流，包括传入 webhook 触发器
+3. **你添加凭证**：打开 n8n 的 UI，手动添加你的 Slack token / GitHub token
+4. **你锁定工作流**：防止智能体进一步修改
+5. **智能体调用 webhook**：从现在开始，OpenClaw 用 JSON 负载调用 `http://n8n:5678/webhook/my-workflow` —— 它永远看不到 API 密钥
 
 ```text
 ┌──────────────┐     webhook call      ┌─────────────────┐     API call     ┌──────────────┐
@@ -36,18 +36,18 @@ When OpenClaw handles everything directly, you get three compounding problems:
 └──────────────┘                       └─────────────────┘                  └──────────────┘
 ```
 
-## Skills You Need
+## 所需技能
 
-- `n8n` API access (for creating/triggering workflows)
-- `fetch` or `curl` for webhook calls
-- Docker (if using the pre-configured stack)
-- n8n credential management (manual, one-time setup per integration)
+- `n8n` API 访问（用于创建/触发工作流）
+- `fetch` 或 `curl` 用于 webhook 调用
+- Docker（如果使用预配置栈）
+- n8n 凭证管理（每个集成手动一次性设置）
 
-## How to Set It Up
+## 如何设置
 
-### Option 1: Pre-configured Docker Stack
+### 选项 1：预配置 Docker 栈
 
-A community-maintained Docker Compose setup ([openclaw-n8n-stack](https://github.com/caprihan/openclaw-n8n-stack)) pre-wires everything on a shared Docker network:
+社区维护的 Docker Compose 设置（[openclaw-n8n-stack](https://github.com/caprihan/openclaw-n8n-stack)）在共享 Docker 网络上预连线所有内容：
 
 ```bash
 git clone https://github.com/caprihan/openclaw-n8n-stack.git
@@ -57,17 +57,17 @@ cp .env.template .env
 docker-compose up -d
 ```
 
-This gives you:
-- OpenClaw on port 3456
-- n8n on port 5678
-- Shared Docker network so OpenClaw can call `http://n8n:5678/webhook/...` directly
-- Pre-built workflow templates (multi-LLM fact-checking, email triage, social monitoring)
+这将为你提供：
+- OpenClaw 在端口 3456
+- n8n 在端口 5678
+- 共享 Docker 网络，OpenClaw 可以直接调用 `http://n8n:5678/webhook/...`
+- 预构建的工作流模板（多 LLM 事实核查、邮件分类、社交监控）
 
-### Option 2: Manual Setup
+### 选项 2：手动设置
 
-1. Install n8n (`npm install n8n -g` or run via Docker)
-2. Configure OpenClaw to know the n8n base URL
-3. Add this to your AGENTS.md:
+1. 安装 n8n（`npm install n8n -g` 或通过 Docker 运行）
+2. 配置 OpenClaw 知道 n8n 基础 URL
+3. 将此添加到你的 AGENTS.md：
 
 ```text
 ## n8n Integration Pattern
@@ -89,19 +89,19 @@ curl -X POST http://n8n:5678/webhook/{workflow-name} \
   -d '{"channel": "#general", "message": "Hello from OpenClaw"}'
 ```
 
-## Key Insights
+## 关键要点
 
-- **Three wins in one**: Observability (visual UI), security (credential isolation), and performance (deterministic workflows don't burn tokens)
-- **Lock after testing**: The "build → test → lock" cycle is critical — without locking, the agent can silently modify workflows
-- **n8n has 400+ integrations**: Most external services you'd want to connect already have n8n nodes, saving the agent from writing custom API calls
-- **Audit trail for free**: n8n logs every workflow execution with input/output data
+- **一举三得**：可观察性（可视化 UI）、安全性（凭证隔离）和性能（确定性工作流不消耗 tokens）
+- **测试后锁定**："构建 → 测试 → 锁定" 循环至关重要 —— 没有锁定，智能体可以静默修改工作流
+- **n8n 有 400+ 集成**：你想连接的大多数外部服务已经有 n8n 节点，节省智能体编写自定义 API 调用
+- **免费审计跟踪**：n8n 记录每个工作流执行的输入/输出数据
 
-## Inspired By
+## 参考来源
 
-This pattern was described by [Simon Høiberg](https://x.com/SimonHoiberg/status/2020843874382487959), who outlined three reasons this approach beats letting OpenClaw handle API interactions directly: observability through n8n's visual UI, security through credential isolation, and performance by running deterministic sub-tasks as workflows instead of LLM calls. The [openclaw-n8n-stack](https://github.com/caprihan/openclaw-n8n-stack) repository provides a ready-to-run Docker Compose setup implementing this pattern.
+这个模式由 [Simon Høiberg](https://x.com/SimonHoiberg/status/2020843874382487959) 描述，他概述了这种方法胜过让 OpenClaw 直接处理 API 交互的三个原因：通过 n8n 可视化 UI 的可观察性、通过凭证隔离的安全性，以及通过将确定性子任务作为工作流而非 LLM 调用运行的性能。[openclaw-n8n-stack](https://github.com/caprihan/openclaw-n8n-stack) 仓库提供了实现此模式的即用型 Docker Compose 设置。
 
-## Related Links
+## 相关链接
 
-- [n8n Documentation](https://docs.n8n.io/)
-- [openclaw-n8n-stack (Docker setup)](https://github.com/caprihan/openclaw-n8n-stack)
-- [n8n Webhook Trigger Docs](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/)
+- [n8n 文档](https://docs.n8n.io/)
+- [openclaw-n8n-stack (Docker 设置)](https://github.com/caprihan/openclaw-n8n-stack)
+- [n8n Webhook 触发器文档](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/)

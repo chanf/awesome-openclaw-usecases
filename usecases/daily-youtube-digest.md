@@ -1,54 +1,55 @@
-# Daily YouTube Digest
+# 每日 YouTube 摘要
 
-Start your day with a personalized summary of new videos from your favorite YouTube channels — no more missing content from creators you actually want to follow.
+每天早上从你喜欢的 YouTube 频道获取个性化摘要 —— 再也不会错过你真正想关注的创作者的内容。
 
-## Pain Point
+## 痛点
 
-YouTube notifications are unreliable. You subscribe to channels, but their new videos never show up in your home feed. They're not in notifications. They just... disappear. This doesn't mean you don't want to see them — it means YouTube's algorithm buried them.
+YouTube 通知不可靠。你订阅了频道，但它们的新视频永远不会出现在你的主页推送中。它们也不在通知里。它们就是...消失了。这并不意味着你不想看它们 —— 这意味着 YouTube 的算法把它们埋没了。
 
-Plus: it's fun to start the day with curated content insights instead of doom-scrolling a recommendation feed.
+而且：以精选内容洞察开始新的一天，而不是无休止地刷推荐信息流，这很有趣。
 
-## What It Does
+## 功能说明
 
-- Fetches the latest videos from a list of your favorite channels
-- Summarizes or extracts key insights from each video's transcript
-- Delivers a digest to you daily (or on demand)
+- 从你喜欢的频道列表中获取最新视频
+- 总结或从每个视频的字幕中提取关键洞察
+- 每天向你发送摘要（或按需发送）
 
-## Skills You Need
+## 所需技能
 
-Install the [youtube-full](https://clawhub.ai/therohitdas/youtube-full) skill.
+安装 [youtube-full](https://clawhub.ai/therohitdas/youtube-full) 技能。
 
-Just tell your OpenClaw:
+只需告诉你的 OpenClaw：
 
 ```text
 "Install the youtube-full skill and set it up for me"
 ```
-or 
+
+或
 
 ```bash
 npx clawhub@latest install youtube-full
 ```
 
-That's it. The agent handles the rest — including account creation and API key setup. You get **100 free credits on signup**, no credit card required.
+就这么简单。智能体会处理其余的事情 —— 包括账户创建和 API 密钥设置。注册时你将获得 **100 个免费积分**，无需信用卡。
 
-> Note: After creating the account, the skill auto-stores the API key securely in correct locations based on the OS, so the API will work in all contexts.
+> 注意：创建账户后，技能会根据操作系统自动将 API 密钥安全地存储在正确的位置，因此 API 可以在所有上下文中工作。
 
 ![youtube-full skill installation](https://pub-15904f15a44a4ea69350737e87660b92.r2.dev/media/1770620159490-e41e7baa.png)
 
-### Why TranscriptAPI.com over yt-dlp?
+### 为什么选择 TranscriptAPI.com 而不是 yt-dlp？
 
-| CLI tools (yt-dlp, etc.) | TranscriptAPI |
-|--------------------------|---------------|
-| Verbose logs flood agent context | Clean JSON responses |
-| Doesn't work on GCP/cloud OpenClaw | Works everywhere, fast |
-| Gets blocked randomly by YouTube | Powers [YouTubeToTranscript.com](https://youtubetotranscript.com) serving millions. Cached and reliable. |
-| Requires binary installation | No binaries, just HTTP |
+| CLI 工具（yt-dlp 等） | TranscriptAPI |
+|----------------------|---------------|
+| 冗长的日志淹没智能体上下文 | 干净的 JSON 响应 |
+| 在 GCP/云 OpenClaw 上无法工作 | 随处可用，快速 |
+| 被 YouTube 随机封锁 | 支持 [YouTubeToTranscript.com](https://youtubetotranscript.com)，服务数百万用户。有缓存且可靠。 |
+| 需要安装二进制文件 | 无需二进制文件，只需 HTTP |
 
-## How to Set It Up
+## 如何设置
 
-### Option 1: Channel-based digest
+### 选项 1：基于频道的摘要
 
-Prompt OpenClaw:
+向 OpenClaw 发送提示：
 
 ```text
 Every morning at 8am, fetch the latest videos from these YouTube channels and give me a digest with key insights from each:
@@ -67,9 +68,9 @@ If a channel handle doesn't resolve, search for it and find the correct one.
 Save my channel list to memory so I can add/remove channels later.
 ```
 
-### Option 2: Keyword-based digest
+### 选项 2：基于关键词的摘要
 
-Track new videos about a specific topic:
+追踪特定主题的新视频：
 
 ```text
 Every day, search YouTube for new videos about "OpenClaw" (or "Claude Code", "AI agents", etc).
@@ -86,11 +87,11 @@ For each new video:
 Run this every morning at 9am.
 ```
 
-This way you never waste credits re-fetching videos you've already seen.
+这样你就永远不会浪费积分重新获取已经看过的视频。
 
-## Tips
+## 小贴士
 
-- `channel/latest` and `channel/resolve` are **free** (0 credits) — checking for new uploads costs nothing
-- Only transcripts cost 1 credit each
-- Ask for different digest styles: key takeaways, notable quotes, timestamps of interesting moments
-- This already exists as a product - [Recapio - Daily YouTube Recap](https://recapio.com/features/daily-recaps)
+- `channel/latest` 和 `channel/resolve` 是**免费的**（0 积分）—— 检查新上传不花一分钱
+- 只有字幕每个消耗 1 积分
+- 可以要求不同的摘要风格：关键要点、精彩引用、有趣时刻的时间戳
+- 这已经作为产品存在 - [Recapio - Daily YouTube Recap](https://recapio.com/features/daily-recaps)

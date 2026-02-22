@@ -1,23 +1,23 @@
-# Personal CRM with Automatic Contact Discovery
+# 个人 CRM 与自动联系人发现
 
-Keeping track of who you've met, when, and what you discussed is impossible to do manually. Important follow-ups slip through the cracks, and you forget context before important meetings.
+手动追踪你见过谁、什么时候见的以及讨论了什么是不可能的。重要的跟进会从缝隙中溜走，你在重要会议前忘记上下文。
 
-This workflow builds and maintains a personal CRM automatically:
+这个工作流程自动构建和维护个人 CRM：
 
-• Daily cron job scans email and calendar for new contacts and interactions
-• Stores contacts in a structured database with relationship context
-• Natural language queries: "What do I know about [person]?", "Who needs follow-up?", "When did I last talk to [person]?"
-• Daily meeting prep briefing: before each day's meetings, researches external attendees via CRM + email history and delivers a briefing
+• 每日 cron 作业扫描电子邮件和日历以获取新联系人和互动
+• 将联系人存储在带有关系上下文的结构化数据库中
+• 自然语言查询："我对 [某人] 了解什么？"、"谁需要跟进？"、"我上次和 [某人] 说话是什么时候？"
+• 每日会议准备简报：在每天的会议之前，通过 CRM + 邮件历史研究外部与会者并提供简报
 
-## Skills you Need
+## 所需技能
 
-- `gog` CLI (for Gmail and Google Calendar)
-- Custom CRM database (SQLite or similar) or use the [crm-query](https://clawhub.ai) skill if available
-- Telegram topic for CRM queries
+- `gog` CLI（用于 Gmail 和 Google Calendar）
+- 自定义 CRM 数据库（SQLite 或类似）或使用 [crm-query](https://clawhub.ai) 技能（如果可用）
+- Telegram 主题用于 CRM 查询
 
-## How to Set it Up
+## 如何设置
 
-1. Create a CRM database:
+1. 创建 CRM 数据库：
 ```sql
 CREATE TABLE contacts (
   id INTEGER PRIMARY KEY,
@@ -29,8 +29,8 @@ CREATE TABLE contacts (
   notes TEXT
 );
 ```
-2. Set up a Telegram topic called "personal-crm" for queries.
-3. Prompt OpenClaw:
+2. 设置一个名为 "personal-crm" 的 Telegram 主题用于查询。
+3. 向 OpenClaw 发送提示：
 ```text
 Run a daily cron job at 6 AM to:
 1. Scan my Gmail and Calendar for the past 24 hours

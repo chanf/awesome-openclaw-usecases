@@ -1,37 +1,37 @@
-# Project State Management System: Event-Driven Alternative to Kanban
+# 项目状态管理系统：看板的事件驱动替代方案
 
-Traditional Kanban boards are static and require manual updates. You forget to move cards, lose context between sessions, and can't track the "why" behind state changes. Projects drift without clear visibility.
+传统看板是静态的，需要手动更新。你忘记移动卡片，在会话之间丢失上下文，无法追踪状态变化背后的"原因"。项目在没有清晰可见性的情况下偏离轨道。
 
-This workflow replaces Kanban with an event-driven system that tracks project state automatically:
+这个工作流程用事件驱动系统取代看板，自动追踪项目状态：
 
-• Stores project state in a database with full history
-• Captures context: decisions, blockers, next steps, key insights
-• Event-driven updates: "Just finished X, blocked on Y" → automatic state transition
-• Natural language queries: "What's the status of [project]?", "Why did we pivot on [feature]?"
-• Daily standup summaries: What happened yesterday, what's planned today, what's blocked
-• Git integration: links commits to project events for traceability
+• 在带有完整历史记录的数据库中存储项目状态
+• 捕获上下文：决策、阻塞、下一步、关键洞察
+• 事件驱动更新："刚完成 X，被 Y 阻塞" → 自动状态转换
+• 自然语言查询："[项目] 的状态是什么？"、"我们为什么在 [功能] 上转向？"
+• 每日站会摘要：昨天发生了什么，今天计划什么，什么被阻塞
+• Git 集成：将提交链接到项目事件以实现可追溯性
 
-## Pain Point
+## 痛点
 
-Kanban boards become stale. You waste time updating cards instead of doing work. Context gets lost—three months later, you can't remember why you made a key decision. There's no automatic link between code changes and project progress.
+看板变得陈旧。你浪费时间更新卡片而不是做工作。上下文丢失 —— 三个月后，你不记得为什么做出了关键决策。代码变更和项目进展之间没有自动链接。
 
-## What It Does
+## 功能说明
 
-Instead of dragging cards, you chat with your assistant: "Finished the auth flow, starting on the dashboard." The system logs the event, updates project state, and preserves context. When you ask "Where are we on the dashboard?" it gives you the full story: what's done, what's next, what's blocking you, and why.
+不再是拖动卡片，而是与你的助手聊天："完成了认证流程，开始做仪表板。"系统记录事件，更新项目状态，并保留上下文。当你问"仪表板进展如何？"它会给你完整的故事：完成了什么，下一步是什么，什么阻塞了你，以及为什么。
 
-Git commits are automatically scanned and linked to projects. Your daily standup summary writes itself.
+Git 提交会被自动扫描并链接到项目。你的每日站会摘要自动生成。
 
-## Skills Needed
+## 所需技能
 
-- `postgres` or SQLite for project state database
-- `github` (gh CLI) for commit tracking
-- Discord or Telegram for updates and queries
-- Cron jobs for daily summaries
-- Sub-agents for parallel project analysis
+- `postgres` 或 SQLite 用于项目状态数据库
+- `github`（gh CLI）用于提交追踪
+- Discord 或 Telegram 用于更新和查询
+- Cron 作业用于每日摘要
+- 子智能体用于并行项目分析
 
-## How to Set it Up
+## 如何设置
 
-1. Set up a project state database:
+1. 设置项目状态数据库：
 ```sql
 CREATE TABLE projects (
   id SERIAL PRIMARY KEY,
@@ -60,9 +60,9 @@ CREATE TABLE blockers (
 );
 ```
 
-2. Create a Discord channel for project updates (e.g., #project-state).
+2. 创建一个 Discord 频道用于项目更新（例如 #project-state）。
 
-3. Prompt OpenClaw:
+3. 向 OpenClaw 发送提示：
 ```text
 You are my project state manager. Instead of Kanban, I'll tell you what I'm working on conversationally.
 
@@ -89,9 +89,9 @@ Every morning at 9 AM, run a cron job to:
 When I'm planning a sprint, spawn a sub-agent to analyze each project's state and suggest priorities.
 ```
 
-4. Integrate with your workflow: Just talk to your assistant naturally about what you're doing. The system captures everything.
+4. 与你的工作流集成：只需自然地与你的助手谈论你在做什么。系统会捕获一切。
 
-## Related Links
+## 相关链接
 
-- [Event Sourcing Pattern](https://martinfowler.com/eaaDev/EventSourcing.html)
-- [Why Kanban Fails for Solo Developers](https://blog.nuclino.com/why-kanban-doesnt-work-for-me)
+- [事件溯源模式](https://martinfowler.com/eaaDev/EventSourcing.html)
+- [为什么看板对独立开发者失败](https://blog.nuclino.com/why-kanban-doesnt-work-for-me)
