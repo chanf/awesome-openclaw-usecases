@@ -1,22 +1,22 @@
-# Contributing
+# 贡献指南
 
-## Adding a Use Case
+## 添加使用案例
 
-1. Create a markdown in the `/usecases` folder with the name of your usecase.
-2. Add your usecase in detail. Here are a few suggested points to cover: 
-   - **Pain Point** — What problem does this solve?
-   - **What It Does** — Brief explanation of the use case
-   - **Prompts** — The actual prompts/config you'd give OpenClaw
-   - **Skills Needed** — Which OpenClaw skills are required
-   - **Related Links** — Relevant docs, APIs, tools
-3. Add a row to the relevant category table in the main [README.md](README.md)
-4. Open a PR
+1. 在 `/usecases` 文件夹中创建一个以你的使用案例命名的 markdown 文件。
+2. 详细描述你的使用案例。以下是建议涵盖的要点：
+   - **痛点** — 这解决了什么问题？
+   - **功能说明** — 使用案例的简要解释
+   - **提示词** — 你给 OpenClaw 的实际提示词/配置
+   - **所需技能** — 需要哪些 OpenClaw 技能
+   - **相关链接** — 相关文档、API、工具
+3. 在主 [README.md](README.md) 的相关分类表格中添加一行
+4. 提交 PR
 
-## Guidelines
+## 指南
 
-- One use case per markdown
-- Keep descriptions concise but enough for someone to replicate
-- If your use case doesn't fit an existing category, suggest a new one in your PR
-- Duplicates are fine if the approach is meaningfully different
-- Don't use AI to come up with new use cases. Only suggest use cases you have actually tested and verified.
-- **No crypto-related use cases** — these will not be accepted.
+- 每个 markdown 文件一个使用案例
+- 描述要简洁，但要足够详细以便他人复制
+- 如果你的使用案例不适合现有分类，请在 PR 中建议新分类
+- 如果方法有明显不同，重复的案例是可以接受的
+- 不要使用 AI 来创建新的使用案例。只提交你实际测试并验证过的使用案例。
+- **不接受加密货币相关的使用案例** — 这些将不会被接受。
